@@ -1,0 +1,25 @@
+{
+  "name": "ber-tlv-annotations",
+  "version": "0.0.0",
+  "author": "Simon Eumes",
+  "license": "MIT",
+  "description": "Resources to annotate TLV tags parsed with ber-tlv. Currently Includes EMV, Kernel2 and Kernel3",
+  "private": true,
+  "main": "./dist/ber-tlv-annotations.js",
+  "typescript": {
+    "definition": "./dist/ber-tlv-annotations.d.ts"
+  },  
+  "dependencies": {
+    "country-data": "0.0.19",
+    "i18n-iso-countries": "^0.8.0"
+  },
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "mocha": "^2.2.1",
+    "gulp-mocha": "^2.0.0",
+    "chai": "^2.1.1",
+    "tsproject": "git+https://github.com/eumes/tsproject.git#bbb87e8b0d8b9be23f13c6783d8b70336cd3fc38",
+    "ber-tlv": "file:../ber-tlv"
+  }  
+}

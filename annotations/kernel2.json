@@ -1,0 +1,12 @@
+{
+    "name": "KERNEL2",
+    "reference": "EMV Contactless Kernel 2",
+    "items": [
+        {
+            "tag": "72",
+            "name": "Kernel2 Dummy",
+            "description": null,
+            "format": "ALPHANUMERIC_SPECIAL"
+        }
+    ]
+}
