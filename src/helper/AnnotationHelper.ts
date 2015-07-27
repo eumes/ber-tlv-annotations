@@ -1,10 +1,8 @@
 var currencyLookup = require('country-data').lookup;
 var countryLookup =  require('i18n-iso-countries');
 
-import * as util from 'util';
-import { ITlv, TlvFactory, TlvType } from './Tlv';
+import { OctetBuffer } from 'octet-buffer';
 import { ByteHelper } from './ByteHelper';
-import { OctetBuffer } from '../node_modules/octet-buffer/dist/octet-buffer';
 
 export enum AnnotationValueFormat {
     ALPHABETIC,           // Ascii [a-zA-Z]
@@ -46,7 +44,8 @@ export enum AnnotationValueReference {
     ISO_4217,             // Currency
 }
 
-class AnnotationValueReferenceHelper {
+
+export class AnnotationValueReferenceHelper {
 
     static stringValueUsingReference(mappedValue: string, annotationValueReference: AnnotationValueReference): string {
 
@@ -72,7 +71,7 @@ class AnnotationValueReferenceHelper {
     }
 }
 
-class AnnotationValueFormatHelper {
+export class AnnotationValueFormatHelper {
 
     static stringValueUsingFormat(value: Buffer, annotationValueFormat: AnnotationValueFormat): string {
         var rawValue: string = value.toString('hex').toUpperCase();
@@ -150,115 +149,5 @@ class AnnotationValueFormatHelper {
 
         }
         return stringValue;
-    }
-}
-
-//TODO: extract to TlvAnnotation
-export interface ITlvAnnotation {
-    tag: string;
-    type: TlvType;
-    rawValue: string;
-    mappedValue: string;
-    items: ITlvAnnotation[];
-
-    name: string;
-    description: string;
-    reference: string;
-    format: string;
-    components: ITlvAnnotationComponent[];
-}
-
-class TlvAnnotation implements ITlvAnnotation {
-    public items: ITlvAnnotation[];
-    constructor(public tag: string, public type: TlvType, public rawValue: string, public mappedValue: string = null, public name: string = null, public description: string = null, public reference: string = null, public format: string = null, public components: ITlvAnnotationComponent[] = null) {
-        this.items = null;
-    }
-}
-
-export interface ITlvAnnotationComponent {
-    selector: string;
-    name: string;
-    triggered: boolean;
-    value: string;
-}
-
-class TlvAnnotationComponent implements ITlvAnnotationComponent {
-    constructor(public name: string, public selector: string, public triggered: boolean, public value: string) {}
-}
-
-//TODO: extract to TlvAnnotationResource
-export class TlvAnnotationRegistry {
-
-    //TODO: remove singleton
-    private static INSTANCE: TlvAnnotationRegistry;
-
-    public static getInstance(): TlvAnnotationRegistry {
-        if (this.INSTANCE == null){
-            this.INSTANCE = new TlvAnnotationRegistry();
-            this.INSTANCE.registerDefaultProviders();
-        }
-        return this.INSTANCE;
-    }
-
-    public static  lookupAnnotations(tlvItems: ITlv[]): ITlvAnnotation[]{
-        return this.getInstance().lookupAnnotations(tlvItems);
-    }
-    public static  lookupAnnotation(tlvItems: ITlv): ITlvAnnotation{
-        return this.getInstance().lookupAnnotation(tlvItems);
-    }
-
-    //TODO: add registerAnnotationProviders([])
-    public static registerAnnotationProvider(provider: ITlvAnnotationProvider): void {
-        this.getInstance().registerAnnotationProvider(provider);
-    }
-
-    public providers: ITlvAnnotationProvider[];
-
-    constructor(){
-        this.providers = [];
-    }
-
-    public lookupAnnotations(tlvItems: ITlv[]): ITlvAnnotation[]{
-        var annotationItems: ITlvAnnotation[] = [];
-        for (var i: number = 0; i < tlvItems.length; i++){
-            var tlvItem: ITlv = tlvItems[i];
-            var tlvAnnotation: ITlvAnnotation = this.lookupAnnotation(tlvItem);
-            annotationItems.push(tlvAnnotation);
-
-            if (tlvItem.items !== null){
-                var subAnnotationItems: ITlvAnnotation[] = this.lookupAnnotations(tlvItem.items);
-                tlvAnnotation.items = subAnnotationItems;
-            }
-        }
-        return annotationItems;
-    }
-
-    public lookupAnnotation(tlvItem: ITlv): ITlvAnnotation {
-        for (var i: number = 0; i < this.providers.length; i++){
-            var provider: ITlvAnnotationProvider = this.providers[i];
-            var annotation: ITlvAnnotation = provider.lookup(tlvItem);
-            if (annotation !== null){
-                return annotation;
-            }
-        }
-
-        return this.defaultAnnotation(tlvItem);
-    }
-
-    private defaultAnnotation(tlvItem: ITlv): ITlvAnnotation{
-        var tag: string = tlvItem.tag;
-        var type: TlvType = tlvItem.type;
-        var rawValue: string = AnnotationValueFormatHelper.stringValueUsingFormat(tlvItem.value, AnnotationValueFormat.VARIABLE_BYTES);
-
-        var annotationItem: ITlvAnnotation = new TlvAnnotation(tag, type, rawValue);
-        return annotationItem;
-    }
-
-    public registerAnnotationProvider(provider: ITlvAnnotationProvider): void {
-        this.providers.push(provider);
-    }
-
-    private registerDefaultProviders(): void {
-
     }
 }

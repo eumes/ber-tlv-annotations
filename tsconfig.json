@@ -16,9 +16,16 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
-        "./src/ByteHelper.ts",
-        "./src/DefaultAnnotations.ts",
-        "./src/TlvAnnotationProvider.ts",
-        "./src/TlvAnnotations.ts"
+        "./src/TlvRegistry.ts",
+        "./src/annotation/TlvAnnotation.ts",
+        "./src/default/DefaultProvider.ts",
+        "./src/helper/AnnotationHelper.ts",
+        "./src/helper/ByteHelper.ts",
+        "./src/helper/ByteMatcher.ts",
+        "./src/provider/DummyTlvAnnotationProvider.ts",
+        "./src/provider/JsonTlvAnnotationProvider.ts",
+        "./src/provider/TlvAnnotationProvider.ts",
+        "./src/resource/TlvAnnotationResource.ts",
+        "./typings/tsd.d.ts"
     ]
 }

@@ -1,31 +1,7 @@
+/*
 import { ITlvAnnotationProvider, DefaultTlvAnnotationProvider } from './TlvAnnotations';
 
-//TODO: extract to TlvAnnotationResource
-export interface ITlvAnnotationResource {
-    name: string;
-    reference: string;
-    items: ITlvAnnotationResourceItem[];
-}
-
-export interface ITlvAnnotationResourceItem {
-    tag: string;
-    name: string;
-    description: string;
-    format?: string;
-    reference?: string;
-    components?: ITlvAnnotationResourceItemComponents[];
-}
-
-export interface ITlvAnnotationResourceItemComponents {
-    name: string;
-    bitmask?: string;
-    pattern?: string;
-    bitpattern?: string;
-}
-
-
-
-export class DefaultAnnotations {
+export class DefaultProvider {
 
     static kernel2(): ITlvAnnotationProvider {
         var kernel2 = require('../annotations/kernel2.json');
@@ -42,3 +18,4 @@ export class DefaultAnnotations {
         return new DefaultTlvAnnotationProvider(kernel2);
     }
 }
+*/

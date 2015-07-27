@@ -1,12 +1,13 @@
-//TODO: extract to TlvAnnotationProvider
-export interface ITlvAnnotationProvider {
-    name: string;
-    reference: string;
+import { OctetBuffer } from 'octet-buffer';
+import { ITlv, TlvType, TlvClass } from 'ber-tlv';
 
-    lookup(item: ITlv): ITlvAnnotation;
-}
+import { ByteMatcher } from '../helper/ByteMatcher';
+import { ITlvAnnotation, ITlvAnnotationComponent, TlvAnnotation, TlvAnnotationComponent } from '../annotation/TlvAnnotation';
+import { AnnotationValueFormat, AnnotationValueReference, AnnotationValueFormatHelper, AnnotationValueReferenceHelper } from '../helper/AnnotationHelper';
+import { ITlvAnnotationResource, ITlvAnnotationResourceItem, ITlvAnnotationResourceItemComponents} from '../resource/TlvAnnotationResource';
+import { ITlvAnnotationProvider } from './TlvAnnotationProvider';
 
-export class DefaultTlvAnnotationProvider implements ITlvAnnotationProvider {
+export class JsonTlvAnnotationProvider implements ITlvAnnotationProvider {
     public name: string;
     public reference: string;
 
@@ -107,11 +108,11 @@ export class DefaultTlvAnnotationProvider implements ITlvAnnotationProvider {
             else */
             if (typeof(resourceComponent.bitmask) !== 'undefined' && resourceComponent.bitmask !== null){
                 selector = resourceComponent.bitmask;
-                triggered = ByteHelper.hexStringMatchesHexBitflags(mappedValue, resourceComponent.bitmask);
+                triggered = ByteMatcher.hexStringMatchesHexBitflags(mappedValue, resourceComponent.bitmask);
             }
             else if (typeof(resourceComponent.bitpattern) !== 'undefined' && resourceComponent.bitpattern !== null){
                 selector = resourceComponent.bitpattern;
-                triggered = ByteHelper.hexStringMatchesHexBitpattern(mappedValue, resourceComponent.bitpattern);
+                triggered = ByteMatcher.hexStringMatchesHexBitpattern(mappedValue, resourceComponent.bitpattern);
             }
             else if (typeof(resourceComponent.pattern) !== 'undefined' && resourceComponent.pattern !== null){
                 selector = resourceComponent.pattern.toUpperCase();

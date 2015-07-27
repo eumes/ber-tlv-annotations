@@ -8,11 +8,12 @@
   "main": "./module/ber-tlv-annotations.js",
   "typescript": {
     "definition": "./module/ber-tlv-annotations.d.ts"
-  },  
+  },
   "dependencies": {
     "country-data": "0.0.19",
     "i18n-iso-countries": "^0.8.0",
-    "ber-tlv": "file:../ber-tlv"    
+    "ber-tlv": "file:../ber-tlv",
+    "octet-buffer": "file:../octet-buffer"
   },
   "devDependencies": {
     "del": "^1.2.0",
@@ -20,7 +21,7 @@
     "mocha": "^2.2.1",
     "gulp-mocha": "^2.0.0",
     "chai": "^2.1.1",
-    "gulp-typescript": "^2.8.0",    
+    "gulp-typescript": "^2.8.0",
     "merge2": "^0.3.6"
-  }  
+  }
 }
