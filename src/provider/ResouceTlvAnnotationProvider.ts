@@ -4,10 +4,30 @@ import { ITlv, TlvType, TlvClass } from 'ber-tlv';
 import { ByteMatcher } from '../helper/ByteMatcher';
 import { ITlvAnnotation, ITlvAnnotationComponent, TlvAnnotation, TlvAnnotationComponent } from '../annotation/TlvAnnotation';
 import { AnnotationValueFormat, AnnotationValueReference, AnnotationValueFormatHelper, AnnotationValueReferenceHelper } from '../helper/AnnotationHelper';
-import { ITlvAnnotationResource, ITlvAnnotationResourceItem, ITlvAnnotationResourceItemComponents} from '../resource/TlvAnnotationResource';
 import { ITlvAnnotationProvider } from './TlvAnnotationProvider';
 
-export class JsonTlvAnnotationProvider implements ITlvAnnotationProvider {
+export interface ITlvAnnotationResource {
+    name: string;
+    reference: string;
+    items: ITlvAnnotationResourceItem[];
+}
+
+export interface ITlvAnnotationResourceItem {
+    tag: string;
+    name: string;
+    description: string;
+    format?: string;
+    reference?: string;
+    components?: ITlvAnnotationResourceItemComponents[];
+}
+
+export interface ITlvAnnotationResourceItemComponents {
+    name: string;
+    bitmatch: string;
+}
+
+
+export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
     public name: string;
     public reference: string;
 
@@ -96,42 +116,16 @@ export class JsonTlvAnnotationProvider implements ITlvAnnotationProvider {
             var selector: string = null;
             var triggered: boolean = false;
             var value: string = null;
-            /*
-            if (typeof(resourceComponent.regex) !== 'undefined' && resourceComponent.regex !== null){
-                selector = resourceComponent.regex;
-                var regexResult = this.extractRegex(mappedValue, resourceComponent.regex);
-                if (regexResult !== null){
-                    triggered = true;
-                    value = regexResult;
-                }
+
+            if (resourceComponent.bitmatch != null){
+                selector = resourceComponent.bitmatch;
+                triggered = ByteMatcher.matchesBitmatch(mappedValue, resourceComponent.bitmatch);
             }
-            else */
-            if (typeof(resourceComponent.bitmask) !== 'undefined' && resourceComponent.bitmask !== null){
-                selector = resourceComponent.bitmask;
-                triggered = ByteMatcher.hexStringMatchesHexBitflags(mappedValue, resourceComponent.bitmask);
-            }
-            else if (typeof(resourceComponent.bitpattern) !== 'undefined' && resourceComponent.bitpattern !== null){
-                selector = resourceComponent.bitpattern;
-                triggered = ByteMatcher.hexStringMatchesHexBitpattern(mappedValue, resourceComponent.bitpattern);
-            }
-            else if (typeof(resourceComponent.pattern) !== 'undefined' && resourceComponent.pattern !== null){
-                selector = resourceComponent.pattern.toUpperCase();
-                triggered = (selector === mappedValue.toUpperCase());
-            }
+
             var valueComponent: ITlvAnnotationComponent = new TlvAnnotationComponent(name, selector, triggered, value);
             valueComponents.push(valueComponent);
         }
         return valueComponents;
-    }
-
-    private extractRegex(reference: string, regex: string): string{
-        var compiledRegex: RegExp = new RegExp(regex, 'i');
-        var execResult: RegExpExecArray = compiledRegex.exec(reference);
-        if (execResult === null){
-            return null;
-        }
-        var match: string = execResult[1];
-        return match;
     }
 
     private findItemWithTag(tag: string): ITlvAnnotationResourceItem{

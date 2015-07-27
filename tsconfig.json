@@ -23,9 +23,8 @@
         "./src/helper/ByteHelper.ts",
         "./src/helper/ByteMatcher.ts",
         "./src/provider/DummyTlvAnnotationProvider.ts",
-        "./src/provider/JsonTlvAnnotationProvider.ts",
+        "./src/provider/ResourceTlvAnnotationProvider.ts",
         "./src/provider/TlvAnnotationProvider.ts",
-        "./src/resource/TlvAnnotationResource.ts",
         "./typings/tsd.d.ts"
     ]
 }
