@@ -9,6 +9,18 @@
             "format": "NUMERIC"
         },
         {
+            "tag": "9F1B",
+            "name": "Terminal Floor Limit",
+            "description": "Indicates the floor limit in the terminal in conjunction with the AID",
+            "format": "BINARY_NUMBER"
+        },  
+        {
+            "tag": "9F37",
+            "name": "Unpredictable Number",
+            "description": "Value to provide variability and uniqueness to the generation of a cryptogram",
+            "format": "VARIABLE"
+        },   
+        {
             "tag": "9F40",
             "name": "Additional Terminal Capabilities",
             "description": "Indicates the data input and output capabilities of the terminal",
@@ -113,7 +125,7 @@
             ]
         },
         {
-            "tag": "9F04",
+            "tag": "9F02",
             "name": "Amount, Authorised (Numeric)",
             "description": "Authorised amount of the transaction (excluding adjustments)",
             "format": "NUMERIC"
@@ -340,7 +352,13 @@
             "name": "Cardholder Name Extended",
             "description": "Indicates the whole cardholder name when greater than 26 characters using the same coding convention as in ISO 7813",
             "format": "ALPHANUMERIC_SPECIAL"
-        },    
+        }, 
+        {
+            "tag": "9F01",
+            "name": "Acquirer Identifier",
+            "description": "Uniquely identifies the acquirer within each payment system.",
+            "format": "NUMERIC"
+        },
         {
             "tag": "8E",
             "name": "Cardholder Verification Method (CVM) List",
@@ -708,7 +726,7 @@
             "tag": "95",
             "name": "Terminal Verification Results",
             "description": "Status of the different functions as seen from the terminal",
-            "format": "VARIABLE",
+            "format": "BINARY_FLAGS",
             "components":[
                 {
                     "bitmask": "8000000000",
@@ -928,7 +946,7 @@
                     "name": "Sale"
                 },
                 {
-                    "pattern": "21",
+                    "pattern": "20",
                     "name": "Refund"
                 }
 

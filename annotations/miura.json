@@ -1,0 +1,136 @@
+{
+    "name": "MIURA",
+    "reference": "Miura MPI 1-33 Specification",
+    "items": [
+        {
+            "tag": "9F2A",
+            "name": "Kernel ID",
+            "description": "Indicates the Kernel ID used by this combination",
+            "format": "BINARY_NUMBER"
+        },
+        {
+            "tag": "9F29",
+            "name": "Extended Selection support flag",
+            "description": "Indicates the support for Extended Selection of the current combination",
+            "format": "VARIABLE",
+            "components":[
+                {
+                    "pattern": "00",
+                    "name": "Disabled"
+                },
+                {
+                    "pattern": "04",
+                    "name": "Enabled"
+                }
+            ]
+        },        
+        {
+            "tag": "DF01",
+            "name": "Status Check support flag",
+            "description": "Indicates the support for Status Check",
+            "format": "VARIABLE",
+            "components":[
+                {
+                    "bitpattern": "00",
+                    "name": "Disabled"
+                },
+                {
+                    "bitpattern": "04",
+                    "name": "Enabled"
+                }
+            ]
+        },
+        {
+            "tag": "DF02",
+            "name": "Zero Amount Allowed support flag",
+            "description": "Indicates the support for Zero Amount Allowed",
+            "format": "VARIABLE",
+            "components":[
+                {
+                    "bitpattern": "00",
+                    "name": "Disabled"
+                },
+                {
+                    "bitpattern": "04",
+                    "name": "Enabled"
+                }
+            ]
+        },
+        {
+            "tag": "DF03",
+            "name": "Reader Contactless Transaction Limit",
+            "description": "Indicates the transaction limit for a transaction to be processed over contactless interface",
+            "format": "NUMERIC"
+        },
+        {
+            "tag": "DF04",
+            "name": "Reader Contactless Floor Limit",
+            "description": "Indicates the transaction floor limit for contactless transaction",
+            "format": "NUMERIC"
+        },      
+        {
+            "tag": "DF05",
+            "name": "Reader Contactless CVM Required Limit",
+            "description": "Indicates the CVM Required Limit for a transaction",
+            "format": "NUMERIC"
+        },
+
+
+        {
+            "tag": "DFDF13",
+            "name": "Debug Trace Activation",
+            "description": "Enable the debug traces (00: disabled; 01: enabled). This tag shall be set to disabled on real field and only enable for support purpose.",
+            "format": "VARIABLE",
+            "components":[
+                {
+                    "pattern": "00",
+                    "name": "Disabled"
+                },
+                {
+                    "pattern": "01",
+                    "name": "Enabled"
+                }
+            ]
+        },
+        {
+            "tag": "DFDF16",
+            "name": "Issuer Script max size",
+            "description": "Specifies the maximum size of Issuer Script",
+            "format": "BINARY_NUMBER"
+        },
+        {
+            "tag": "DFDF20",
+            "name": "Visa DRL support",
+            "description": "Indicate the support of Visa Dynamic Reader Limits (04 to enable)",
+            "format": "VARIABLE",
+            "components":[
+                {
+                    "pattern": "00",
+                    "name": "Disabled"
+                },
+                {
+                    "pattern": "04",
+                    "name": "Enabled"
+                }
+            ]
+        },
+        {
+            "tag": "DFDF52",
+            "name": "EMV Clearing Tags for Kernel 2",
+            "description": "Specifies the Clearing Data for an EMV transaction with MasterCard",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "DFDF53",
+            "name": "Mag-stripe Clearing Tags for Kernel 2",
+            "description": "Specifies the Clearing Data for a Mags-tripe transaction with MasterCard",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "DFDF54",
+            "name": "EMV Clearing Tags for Kernel 3",
+            "description": "Specifies the Clearing Data for an EMV transaction with Visa",
+            "format": "VARIABLE"
+        }
+    ]
+}

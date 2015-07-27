@@ -1,4 +1,4 @@
-export class ByteHelper {
+export class ByteMatcher {
 
     static hexStringMatchesHexBitflags(param1: string, param2: string): boolean {
         return true;

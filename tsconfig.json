@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "module": "commonjs",
+        "removeComments": true,
+        "sourceMap": false,
+        "target": "es5",
+        "noImplicitAny": true,
+        "outDir": "./dist",
+        "rootDir": "./src"
+    },
+    "compileOnSave": false,
+    "filesGlob": [
+        "./src/**/*.ts",
+        "./typings/tsd.d.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./src/TlvRegistry.ts",
+        "./src/annotation/TlvAnnotation.ts",
+        "./src/default/DefaultProvider.ts",
+        "./src/helper/AnnotationHelper.ts",
+        "./src/helper/ByteHelper.ts",
+        "./src/helper/ByteMatcher.ts",
+        "./src/provider/DummyTlvAnnotationProvider.ts",
+        "./src/provider/JsonTlvAnnotationProvider.ts",
+        "./src/provider/TlvAnnotationProvider.ts",
+        "./src/resource/TlvAnnotationResource.ts",
+        "./typings/tsd.d.ts"
+    ]
+}

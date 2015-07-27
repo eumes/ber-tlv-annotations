@@ -3,10 +3,88 @@
     "reference": "EMV Contactless Kernel 3",
     "items": [
         {
-            "tag": "73",
-            "name": "Kernel3 Dummy",
-            "description": null,
-            "format": "ALPHANUMERIC_SPECIAL"
+            "tag": "9F1B",
+            "name": "Terminal Floor Limit",
+            "description": "Indicates the floor limit in the terminal. As defined in Book B.",
+            "format": "BINARY_NUMBER"
+        },
+        {
+            "tag": "9F66",
+            "name": "Terminal Transaction Qualifiers (TTQ)",
+            "description": "Indicates reader capabilities, requirements, and preferences to the card. TTQ byte 2 bits 8-7 are transient values, and reset to zero at the beginning of the transaction. All other TTQ bits are static values, and not modified based on transaction conditions. TTQ byte 3 bit 7 shall be set by the acquirer-merchant to 1b.",
+            "format": "BINARY_FLAGS",
+            "components":[
+                {
+                    "bitmask": "80 00 00 00",
+                    "name": "Mag-stripe mode supported"
+                },
+                {
+                    "bitmask": "40 00 00 00",
+                    "name": "RFU (0)"
+                },
+                {
+                    "bitmask": "20 00 00 00",
+                    "name": "EMV mode supported"
+                },
+                {
+                    "bitmask": "10 00 00 00",
+                    "name": "EMV contact chip supported"
+                },
+                {
+                    "bitmask": "08 00 00 00",
+                    "name": "Offline-only reader"
+                },
+                {
+                    "bitmask": "04 00 00 00",
+                    "name": "Online PIN supported"
+                },
+                {
+                    "bitmask": "02 00 00 00",
+                    "name": "Signature supported"
+                },
+                {
+                    "bitmask": "01 00 00 00",
+                    "name": "Offline Data Authentication for Online Authorizations supported."
+                },
+
+
+                {
+                    "bitmask": "00 80 00 00",
+                    "name": "Online cryptogram required (Note: A qVSDC online-only reader must have TTQ byte 2 bit 8 set to 1b. It may be coded to 1b or set as a result of device configuration parameters.)"
+                },
+                {
+                    "bitmask": "00 40 00 00",
+                    "name": "CVM required"
+                },
+                {
+                    "bitmask": "00 20 00 00",
+                    "name": "(Contact Chip) Offline PIN supported"
+                },
+                {
+                    "bitmask": "00 1F 00 00",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "00 00 80 00",
+                    "name": "Issuer Update Processing supported"
+                },
+                {
+                    "bitmask": "00 00 40 00",
+                    "name": "Consumer Device CVM supported"
+                },
+                {
+                    "bitmask": "00 00 2F 00",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "00 00 00 FF",
+                    "name": "RFU"
+                }
+            ]
         }
     ]
 }
