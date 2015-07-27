@@ -1,6 +1,6 @@
 //TODO: add support for using this format in the ByteHelper
 /**
-	Pattern:
+    Pattern:
 
 "pattern": "05",			--> '<value>',				'05'
 "bitmask": "0080",			--> '<byte>&<bitmask>',		'2&80'		-or- '2&10000000'	-or- '2&7'
@@ -14,12 +14,13 @@
 <bitpattern> == '-' ignore, '1'|'0' value
 
 */
-
-
-export class ByteMatcher {
-
-    static matchesBitmatch(reference: string, bitmatch: string): boolean {
+var ByteMatcher = (function () {
+    function ByteMatcher() {
+    }
+    ByteMatcher.matchesBitmatch = function (reference, bitmatch) {
         return true;
     };
-
-}
+    ;
+    return ByteMatcher;
+})();
+exports.ByteMatcher = ByteMatcher;

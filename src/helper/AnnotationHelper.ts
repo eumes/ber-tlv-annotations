@@ -21,22 +21,6 @@ export enum AnnotationValueFormat {
 }
 
 
-//TODO: add support for using this format in the ByteHelper
-/**
-	Pattern:
-
-"pattern": "05",			--> '<value>',				'05'
-"bitmask": "0080",			--> '<byte>&<bitmask>',		'2&80'		-or- '2&10000000'	-or- '2&7'
-"bitpattern": "xx000011",  	--> '<byte>=<bytemask>', 	'1=--000011'
-"bitpattern": "x0xxxxxx",  								'1=-0------'
-"bitpattern": "00000000 xx000000",						'2=--000000'
-
-<byte> == <number>
-<bitmask>    == <number:2> hex, <number:8> bits, <number:1> bit
-<bytemask>   == <<bitpattern>:8>
-<bitpattern> == '-' ignore, '1'|'0' value
-
-*/
 
 
 export enum AnnotationValueReference {
@@ -74,79 +58,46 @@ export class AnnotationValueReferenceHelper {
 export class AnnotationValueFormatHelper {
 
     static stringValueUsingFormat(value: Buffer, annotationValueFormat: AnnotationValueFormat): string {
-        var rawValue: string = value.toString('hex').toUpperCase();
-        var stringValue: string = rawValue;
+        var stringValue: string;
         switch(annotationValueFormat){
-            case AnnotationValueFormat.ALPHABETIC: {
-                //TODO: extract to ByteHelper
-                stringValue = value.toString('utf-8');
-                break;
-            }
-            case AnnotationValueFormat.ALPHANUMERIC: {
-                //TODO: extract to ByteHelper
-                stringValue = value.toString('utf-8');
-                break;
-            }
+            case AnnotationValueFormat.ALPHABETIC:
+            case AnnotationValueFormat.ALPHANUMERIC:
             case AnnotationValueFormat.ALPHANUMERIC_SPECIAL: {
-                //TODO: extract to ByteHelper
-                stringValue = value.toString('utf-8');
+                stringValue = ByteHelper.getUtf8(value);
                 break;
             }
             case AnnotationValueFormat.UNSIGNED_NUMBER: {
-                //TODO: make this conditional on how many bytes are available (extend OctetBuffer)
-                //right now, this leads to error for number > 127
-                //TODO: extract to ByteHelper
-                stringValue = '' + value.readUInt8(value.length - 1);
+                stringValue = ByteHelper.getNumber(value);
                 break;
             }
             case AnnotationValueFormat.VARIABLE_BYTES: {
-                //TODO: extract to ByteHelper
-                stringValue = rawValue;
-                break;
+                stringValue = ByteHelper.getHex(value);
             }
             case AnnotationValueFormat.VARIABLE_BITS: {
-                //TODO: extract to ByteHelper
-                var octetBuffer: OctetBuffer = new OctetBuffer(value);
-                var bufferBinaryString: string = '';
-                while (octetBuffer.remaining > 0){
-                    var bufferByte: number = octetBuffer.readUInt8();
-                    var bufferByteBinaryString: string = bufferByte.toString(2);
-
-                    var requiredPadding: number = 8 - bufferByteBinaryString.length;
-                    bufferByteBinaryString = Array(requiredPadding + 1).join('0') + bufferByteBinaryString;
-
-                    bufferBinaryString += bufferByteBinaryString + ' ';
-                }
-
-                bufferBinaryString = bufferBinaryString.slice(0, -1);
-                stringValue = bufferBinaryString;
+                stringValue = ByteHelper.getBits(value);
                 break;
             }
             case AnnotationValueFormat.COMPRESSED_NUMERIC: {
-                stringValue = rawValue;
-                //TODO: remove right padded F
-                //TODO: extract to ByteHelper
+                stringValue = ByteHelper.getBcd(value);
+                stringValue = ByteHelper.stripSuffix(stringValue, 'F');
                 break;
             }
             case AnnotationValueFormat.NUMERIC: {
-                stringValue = rawValue;
-                //TODO: remove left padded 0
-                //TODO: extract to ByteHelper
+                stringValue = ByteHelper.getBcd(value);
+                stringValue = ByteHelper.stripPrefix(stringValue, '0');
                 break;
             }
             case AnnotationValueFormat.YYMMDD: {
-                //TODO: extract to ByteHelper
-                stringValue = rawValue;
-                stringValue = stringValue.substring(0, 2) + '-' + stringValue.substring(2, 4) + '-' + stringValue.substring(4, 6);
+                stringValue = ByteHelper.getYYMMDD(value);
                 break;
             }
             case AnnotationValueFormat.HHMMSS: {
-                //TODO: extract to ByteHelper
-                stringValue = rawValue;
-                stringValue = stringValue.substring(0, 2) + ':' + stringValue.substring(2, 4) + ':' + stringValue.substring(4, 6);
+                stringValue = ByteHelper.getHHMMSS(value);
                 break;
             }
-
+            default: {
+                stringValue = ByteHelper.getHex(value);
+            }
         }
         return stringValue;
     }
