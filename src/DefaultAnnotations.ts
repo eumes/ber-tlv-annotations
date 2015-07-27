@@ -1,4 +1,4 @@
-import { ITlvAnnotationProvider, DefaultTlvAnnotationProvider } from './TlvAnnotation';
+import { ITlvAnnotationProvider, DefaultTlvAnnotationProvider } from './TlvAnnotations';
 
 //TODO: extract to TlvAnnotationResource
 export interface ITlvAnnotationResource {
