@@ -1,6 +1,6 @@
 import { ITlv, TlvType } from 'ber-tlv';
 import { ITlvAnnotation, ITlvAnnotationComponent } from './annotation/TlvAnnotation';
-import { ITlvAnnotationProvider } from './TlvAnnotationProvider';
+import { ITlvAnnotationProvider } from './provider/TlvAnnotationProvider';
 import { DummyTlvAnnotationProvider } from './provider/DummyTlvAnnotationProvider';
 
 export class TlvAnnotationRegistry {
