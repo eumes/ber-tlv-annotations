@@ -4,7 +4,7 @@ import { ITlv, TlvType, TlvClass } from 'ber-tlv';
 import { ByteMatcher } from '../helper/ByteMatcher';
 import { IAnnotatedTlv, IAnnotatedTlvComponent, DefaultAnnotatedTlv, DefaultAnnotatedTlvComponent } from '../annotation/AnnotatedTlv';
 import { AnnotationValueFormat, AnnotationValueReference, AnnotationValueFormatHelper, AnnotationValueReferenceHelper } from '../helper/AnnotationHelper';
-import { ITlvAnnotationProvider } from './TlvAnnotationProvider';
+import { IAnnotationProvider } from './AnnotationProvider';
 
 export interface ITlvAnnotationResource {
     name: string;
@@ -27,7 +27,7 @@ export interface ITlvAnnotationResourceItemComponents {
 }
 
 
-export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
+export class ResourceTlvAnnotationProvider implements IAnnotationProvider {
     public name: string;
     public reference: string;
 
@@ -36,7 +36,7 @@ export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
       this.name = resource.name;
     }
 
-    lookup(item: ITlv): IAnnotatedTlv {
+    annotate(item: ITlv): IAnnotatedTlv {
         var resourceItem: ITlvAnnotationResourceItem = this.findItemWithTag(item.tag);
         if (resourceItem == null){
             return null;

@@ -1,16 +1,24 @@
 import { ITlv, TlvType } from 'ber-tlv';
 import { IAnnotatedTlv, IAnnotatedTlvComponent } from './annotation/AnnotatedTlv';
-import { ITlvAnnotationProvider } from './provider/TlvAnnotationProvider';
-import { DummyTlvAnnotationProvider } from './provider/DummyTlvAnnotationProvider';
+import { IAnnotationProvider } from './provider/AnnotationProvider';
+import { DummyAnnotationProvider } from './provider/DummyAnnotationProvider';
 
-export class TlvAnnotationRegistry {
+export interface IAnnotationRegistry {
 
-    private defaultProvider: ITlvAnnotationProvider;
-    public providers: ITlvAnnotationProvider[];
+    lookupAnnotation(tlvItem: ITlv): IAnnotatedTlv;
+    lookupAnnotations(items: ITlv[]): IAnnotatedTlv[];
+    registerProvider(provider: IAnnotationProvider): void;
+
+}
+
+export class AnnotationRegistry implements IAnnotationRegistry {
+
+    private defaultProvider: IAnnotationProvider;
+    public providers: IAnnotationProvider[];
 
     constructor(){
         this.providers = [];
-        this.defaultProvider = new DummyTlvAnnotationProvider();
+        this.defaultProvider = new DummyAnnotationProvider();
     }
 
     public lookupAnnotations(tlvItems: ITlv[]): IAnnotatedTlv[]{
@@ -30,18 +38,17 @@ export class TlvAnnotationRegistry {
 
     public lookupAnnotation(tlvItem: ITlv): IAnnotatedTlv {
         for (var i: number = 0; i < this.providers.length; i++){
-            var provider: ITlvAnnotationProvider = this.providers[i];
-            var annotation: IAnnotatedTlv = provider.lookup(tlvItem);
+            var provider: IAnnotationProvider = this.providers[i];
+            var annotation: IAnnotatedTlv = provider.annotate(tlvItem);
             if (annotation !== null){
                 return annotation;
             }
         }
 
-        return this.defaultProvider.lookup(tlvItem);
+        return this.defaultProvider.annotate(tlvItem);
     }
 
-    //TODO: ITlvAnnotationProvider[]
-    public registerAnnotationProvider(provider: ITlvAnnotationProvider): void {
+    public registerProvider(provider: IAnnotationProvider): void {
         this.providers.push(provider);
     }
 }
