@@ -1,7 +1,7 @@
 var AnnotatedTlv = require('../release/js/annotation/AnnotatedTlv');
 var AnnotationProvider = require('../release/js/provider/AnnotationProvider');
 var AnnotationRegistry = require('../release/js/AnnotationRegistry');
-var ResourceAnnotationProvider = require('../release/js/provider/ResourceAnnotationProvider');
+var ResourceAnnotationProvider = require('../release/js/provider/ResourceBasedAnnotationProvider');
 
 var BerTlvAnnotations = {};
 //AnnotatedTlv
