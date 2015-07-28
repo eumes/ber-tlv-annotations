@@ -1,6 +1,6 @@
 import { ITlv } from 'ber-tlv';
-import { ITlvAnnotation } from '../annotation/TlvAnnotation';
-import { ITlvAnnotationProvider } from './TlvAnnotationProvider';
+import { IAnnotatedTlv } from '../annotation/AnnotatedTlv';
+import { IAnnotationProvider } from './AnnotationProvider';
 export interface ITlvAnnotationResource {
     name: string;
     reference: string;
@@ -18,12 +18,12 @@ export interface ITlvAnnotationResourceItemComponents {
     name: string;
     bitmatch: string;
 }
-export declare class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
+export declare class ResourceBasedAnnotationProvider implements IAnnotationProvider {
     resource: ITlvAnnotationResource;
     name: string;
     reference: string;
     constructor(resource: ITlvAnnotationResource);
-    lookup(item: ITlv): ITlvAnnotation;
+    annotate(item: ITlv): IAnnotatedTlv;
     private buildAnnotationConstructed(item, resourceItem);
     private buildAnnotationPrimitive(item, resourceItem);
     private buildAnnotationReference(reference, mappedValue);

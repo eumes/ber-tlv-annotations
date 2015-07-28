@@ -16,7 +16,7 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
-        "./src/TlvRegistry.ts",
+        "./src/AnnotationRegistry.ts",
         "./src/annotation/AnnotatedTlv.ts",
         "./src/helper/AnnotationHelper.ts",
         "./src/helper/ByteHelper.ts",

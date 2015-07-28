@@ -1,23 +1,23 @@
 import { TlvType } from 'ber-tlv';
-export interface ITlvAnnotation {
+export interface IAnnotatedTlv {
     tag: string;
     type: TlvType;
     rawValue: string;
     mappedValue: string;
-    items: ITlvAnnotation[];
+    items: IAnnotatedTlv[];
     name: string;
     description: string;
     reference: string;
     format: string;
-    components: ITlvAnnotationComponent[];
+    components: IAnnotatedTlvComponent[];
 }
-export interface ITlvAnnotationComponent {
+export interface IAnnotatedTlvComponent {
     selector: string;
     name: string;
     triggered: boolean;
     value: string;
 }
-export declare class TlvAnnotation implements ITlvAnnotation {
+export declare class DefaultAnnotatedTlv implements IAnnotatedTlv {
     tag: string;
     type: TlvType;
     rawValue: string;
@@ -26,11 +26,11 @@ export declare class TlvAnnotation implements ITlvAnnotation {
     description: string;
     reference: string;
     format: string;
-    components: ITlvAnnotationComponent[];
-    items: ITlvAnnotation[];
-    constructor(tag: string, type: TlvType, rawValue: string, mappedValue?: string, name?: string, description?: string, reference?: string, format?: string, components?: ITlvAnnotationComponent[]);
+    components: IAnnotatedTlvComponent[];
+    items: IAnnotatedTlv[];
+    constructor(tag: string, type: TlvType, rawValue: string, mappedValue?: string, name?: string, description?: string, reference?: string, format?: string, components?: IAnnotatedTlvComponent[]);
 }
-export declare class TlvAnnotationComponent implements ITlvAnnotationComponent {
+export declare class DefaultAnnotatedTlvComponent implements IAnnotatedTlvComponent {
     name: string;
     selector: string;
     triggered: boolean;

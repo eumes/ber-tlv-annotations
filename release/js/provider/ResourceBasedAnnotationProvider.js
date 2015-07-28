@@ -1,14 +1,14 @@
 var ber_tlv_1 = require('ber-tlv');
 var ByteMatcher_1 = require('../helper/ByteMatcher');
-var TlvAnnotation_1 = require('../annotation/TlvAnnotation');
+var AnnotatedTlv_1 = require('../annotation/AnnotatedTlv');
 var AnnotationHelper_1 = require('../helper/AnnotationHelper');
-var ResourceTlvAnnotationProvider = (function () {
-    function ResourceTlvAnnotationProvider(resource) {
+var ResourceBasedAnnotationProvider = (function () {
+    function ResourceBasedAnnotationProvider(resource) {
         this.resource = resource;
         this.reference = resource.reference;
         this.name = resource.name;
     }
-    ResourceTlvAnnotationProvider.prototype.lookup = function (item) {
+    ResourceBasedAnnotationProvider.prototype.annotate = function (item) {
         var resourceItem = this.findItemWithTag(item.tag);
         if (resourceItem == null) {
             return null;
@@ -22,17 +22,17 @@ var ResourceTlvAnnotationProvider = (function () {
         }
         return annotation;
     };
-    ResourceTlvAnnotationProvider.prototype.buildAnnotationConstructed = function (item, resourceItem) {
+    ResourceBasedAnnotationProvider.prototype.buildAnnotationConstructed = function (item, resourceItem) {
         var tag = item.tag;
         var type = item.type;
         var name = resourceItem.name;
         var description = resourceItem.description;
         var reference = this.reference;
         var rawValue = item.value.toString('hex').toUpperCase();
-        var annotationItem = new TlvAnnotation_1.TlvAnnotation(tag, type, rawValue, null, name, description, reference);
+        var annotationItem = new AnnotatedTlv_1.DefaultAnnotatedTlv(tag, type, rawValue, null, name, description, reference);
         return annotationItem;
     };
-    ResourceTlvAnnotationProvider.prototype.buildAnnotationPrimitive = function (item, resourceItem) {
+    ResourceBasedAnnotationProvider.prototype.buildAnnotationPrimitive = function (item, resourceItem) {
         var tag = item.tag;
         var type = item.type;
         var name = resourceItem.name;
@@ -54,19 +54,19 @@ var ResourceTlvAnnotationProvider = (function () {
         if (mergedComponents.length === 0) {
             mergedComponents = null;
         }
-        var annotationItem = new TlvAnnotation_1.TlvAnnotation(tag, type, rawValue, mappedValue, name, description, reference, format, mergedComponents);
+        var annotationItem = new AnnotatedTlv_1.DefaultAnnotatedTlv(tag, type, rawValue, mappedValue, name, description, reference, format, mergedComponents);
         return annotationItem;
     };
-    ResourceTlvAnnotationProvider.prototype.buildAnnotationReference = function (reference, mappedValue) {
+    ResourceBasedAnnotationProvider.prototype.buildAnnotationReference = function (reference, mappedValue) {
         if (reference == null || reference.length === 0) {
             return null;
         }
         var referenceEnum = AnnotationHelper_1.AnnotationValueReference[reference];
         var referenceValue = AnnotationHelper_1.AnnotationValueReferenceHelper.stringValueUsingReference(mappedValue, referenceEnum);
-        var referenceComponent = new TlvAnnotation_1.TlvAnnotationComponent(reference, mappedValue, true, referenceValue);
+        var referenceComponent = new AnnotatedTlv_1.DefaultAnnotatedTlvComponent(reference, mappedValue, true, referenceValue);
         return referenceComponent;
     };
-    ResourceTlvAnnotationProvider.prototype.buildAnnotationComponents = function (mappedValue, resourceItem) {
+    ResourceBasedAnnotationProvider.prototype.buildAnnotationComponents = function (mappedValue, resourceItem) {
         if (resourceItem.components == null || resourceItem.components.length === 0) {
             return null;
         }
@@ -81,12 +81,12 @@ var ResourceTlvAnnotationProvider = (function () {
                 selector = resourceComponent.bitmatch;
                 triggered = ByteMatcher_1.ByteMatcher.matchesBitmatch(mappedValue, resourceComponent.bitmatch);
             }
-            var valueComponent = new TlvAnnotation_1.TlvAnnotationComponent(name, selector, triggered, value);
+            var valueComponent = new AnnotatedTlv_1.DefaultAnnotatedTlvComponent(name, selector, triggered, value);
             valueComponents.push(valueComponent);
         }
         return valueComponents;
     };
-    ResourceTlvAnnotationProvider.prototype.findItemWithTag = function (tag) {
+    ResourceBasedAnnotationProvider.prototype.findItemWithTag = function (tag) {
         for (var i = 0; i < this.resource.items.length; i++) {
             var item = this.resource.items[i];
             if (item.tag === tag) {
@@ -95,6 +95,6 @@ var ResourceTlvAnnotationProvider = (function () {
         }
         return null;
     };
-    return ResourceTlvAnnotationProvider;
+    return ResourceBasedAnnotationProvider;
 })();
-exports.ResourceTlvAnnotationProvider = ResourceTlvAnnotationProvider;
+exports.ResourceBasedAnnotationProvider = ResourceBasedAnnotationProvider;
