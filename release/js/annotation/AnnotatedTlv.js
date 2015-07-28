@@ -1,5 +1,5 @@
-var TlvAnnotation = (function () {
-    function TlvAnnotation(tag, type, rawValue, mappedValue, name, description, reference, format, components) {
+var DefaultAnnotatedTlv = (function () {
+    function DefaultAnnotatedTlv(tag, type, rawValue, mappedValue, name, description, reference, format, components) {
         if (mappedValue === void 0) { mappedValue = null; }
         if (name === void 0) { name = null; }
         if (description === void 0) { description = null; }
@@ -17,16 +17,16 @@ var TlvAnnotation = (function () {
         this.components = components;
         this.items = null;
     }
-    return TlvAnnotation;
+    return DefaultAnnotatedTlv;
 })();
-exports.TlvAnnotation = TlvAnnotation;
-var TlvAnnotationComponent = (function () {
-    function TlvAnnotationComponent(name, selector, triggered, value) {
+exports.DefaultAnnotatedTlv = DefaultAnnotatedTlv;
+var DefaultAnnotatedTlvComponent = (function () {
+    function DefaultAnnotatedTlvComponent(name, selector, triggered, value) {
         this.name = name;
         this.selector = selector;
         this.triggered = triggered;
         this.value = value;
     }
-    return TlvAnnotationComponent;
+    return DefaultAnnotatedTlvComponent;
 })();
-exports.TlvAnnotationComponent = TlvAnnotationComponent;
+exports.DefaultAnnotatedTlvComponent = DefaultAnnotatedTlvComponent;
