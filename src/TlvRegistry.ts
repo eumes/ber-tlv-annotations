@@ -1,5 +1,5 @@
 import { ITlv, TlvType } from 'ber-tlv';
-import { ITlvAnnotation, ITlvAnnotationComponent } from './annotation/TlvAnnotation';
+import { IAnnotatedTlv, IAnnotatedTlvComponent } from './annotation/AnnotatedTlv';
 import { ITlvAnnotationProvider } from './provider/TlvAnnotationProvider';
 import { DummyTlvAnnotationProvider } from './provider/DummyTlvAnnotationProvider';
 
@@ -13,25 +13,25 @@ export class TlvAnnotationRegistry {
         this.defaultProvider = new DummyTlvAnnotationProvider();
     }
 
-    public lookupAnnotations(tlvItems: ITlv[]): ITlvAnnotation[]{
-        var annotationItems: ITlvAnnotation[] = [];
+    public lookupAnnotations(tlvItems: ITlv[]): IAnnotatedTlv[]{
+        var annotationItems: IAnnotatedTlv[] = [];
         for (var i: number = 0; i < tlvItems.length; i++){
             var tlvItem: ITlv = tlvItems[i];
-            var tlvAnnotation: ITlvAnnotation = this.lookupAnnotation(tlvItem);
+            var tlvAnnotation: IAnnotatedTlv = this.lookupAnnotation(tlvItem);
             annotationItems.push(tlvAnnotation);
 
             if (tlvItem.items !== null){
-                var subAnnotationItems: ITlvAnnotation[] = this.lookupAnnotations(tlvItem.items);
+                var subAnnotationItems: IAnnotatedTlv[] = this.lookupAnnotations(tlvItem.items);
                 tlvAnnotation.items = subAnnotationItems;
             }
         }
         return annotationItems;
     }
 
-    public lookupAnnotation(tlvItem: ITlv): ITlvAnnotation {
+    public lookupAnnotation(tlvItem: ITlv): IAnnotatedTlv {
         for (var i: number = 0; i < this.providers.length; i++){
             var provider: ITlvAnnotationProvider = this.providers[i];
-            var annotation: ITlvAnnotation = provider.lookup(tlvItem);
+            var annotation: IAnnotatedTlv = provider.lookup(tlvItem);
             if (annotation !== null){
                 return annotation;
             }

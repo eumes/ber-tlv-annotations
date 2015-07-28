@@ -1,9 +1,9 @@
 import { ITlv, TlvType, TlvClass } from 'ber-tlv';
-import { ITlvAnnotation, ITlvAnnotationComponent } from '../annotation/TlvAnnotation';
+import { IAnnotatedTlv, IAnnotatedTlvComponent } from '../annotation/AnnotatedTlv';
 
 export interface ITlvAnnotationProvider {
     name: string;
     reference: string;
 
-    lookup(item: ITlv): ITlvAnnotation;
+    lookup(item: ITlv): IAnnotatedTlv;
 }

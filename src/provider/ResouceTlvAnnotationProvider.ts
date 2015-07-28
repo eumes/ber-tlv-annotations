@@ -2,7 +2,7 @@ import { OctetBuffer } from 'octet-buffer';
 import { ITlv, TlvType, TlvClass } from 'ber-tlv';
 
 import { ByteMatcher } from '../helper/ByteMatcher';
-import { ITlvAnnotation, ITlvAnnotationComponent, TlvAnnotation, TlvAnnotationComponent } from '../annotation/TlvAnnotation';
+import { IAnnotatedTlv, IAnnotatedTlvComponent, DefaultAnnotatedTlv, DefaultAnnotatedTlvComponent } from '../annotation/AnnotatedTlv';
 import { AnnotationValueFormat, AnnotationValueReference, AnnotationValueFormatHelper, AnnotationValueReferenceHelper } from '../helper/AnnotationHelper';
 import { ITlvAnnotationProvider } from './TlvAnnotationProvider';
 
@@ -36,13 +36,13 @@ export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
       this.name = resource.name;
     }
 
-    lookup(item: ITlv): ITlvAnnotation {
+    lookup(item: ITlv): IAnnotatedTlv {
         var resourceItem: ITlvAnnotationResourceItem = this.findItemWithTag(item.tag);
         if (resourceItem == null){
             return null;
         }
 
-        var annotation: ITlvAnnotation;
+        var annotation: IAnnotatedTlv;
         if (item.type === TlvType.PRIMITIVE){
           annotation = this.buildAnnotationPrimitive(item, resourceItem);
         }
@@ -52,7 +52,7 @@ export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
         return annotation;
     }
 
-    private buildAnnotationConstructed(item: ITlv, resourceItem: ITlvAnnotationResourceItem): ITlvAnnotation {
+    private buildAnnotationConstructed(item: ITlv, resourceItem: ITlvAnnotationResourceItem): IAnnotatedTlv {
         var tag: string = item.tag;
         var type: TlvType = item.type;
         var name: string = resourceItem.name;
@@ -60,11 +60,11 @@ export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
         var reference: string = this.reference;
         var rawValue: string = item.value.toString('hex').toUpperCase();
 
-        var annotationItem: ITlvAnnotation = new TlvAnnotation(tag, type, rawValue, null, name, description, reference);
+        var annotationItem: IAnnotatedTlv = new DefaultAnnotatedTlv(tag, type, rawValue, null, name, description, reference);
         return annotationItem;
     }
 
-    private buildAnnotationPrimitive(item: ITlv, resourceItem: ITlvAnnotationResourceItem): ITlvAnnotation {
+    private buildAnnotationPrimitive(item: ITlv, resourceItem: ITlvAnnotationResourceItem): IAnnotatedTlv {
         var tag: string = item.tag;
         var type: TlvType = item.type;
         var name: string = resourceItem.name;
@@ -74,10 +74,10 @@ export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
         var reference: string = resourceItem.reference;
         var rawValue: string = item.value.toString('hex').toUpperCase();
         var mappedValue: string = AnnotationValueFormatHelper.stringValueUsingFormat(item.value, (<any>AnnotationValueFormat)[format]); //enum workaround
-        var componentsItems: ITlvAnnotationComponent[] = this.buildAnnotationComponents(mappedValue, resourceItem);
-        var referenceItem: ITlvAnnotationComponent = this.buildAnnotationReference(reference, mappedValue);
+        var componentsItems: IAnnotatedTlvComponent[] = this.buildAnnotationComponents(mappedValue, resourceItem);
+        var referenceItem: IAnnotatedTlvComponent = this.buildAnnotationReference(reference, mappedValue);
 
-        var mergedComponents: ITlvAnnotationComponent[] = [];
+        var mergedComponents: IAnnotatedTlvComponent[] = [];
         if (componentsItems !== null){
             mergedComponents = mergedComponents.concat(componentsItems);
         }
@@ -88,11 +88,11 @@ export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
             mergedComponents = null;
         }
 
-        var annotationItem: ITlvAnnotation = new TlvAnnotation(tag, type, rawValue, mappedValue, name, description, reference, format, mergedComponents);
+        var annotationItem: IAnnotatedTlv = new DefaultAnnotatedTlv(tag, type, rawValue, mappedValue, name, description, reference, format, mergedComponents);
         return annotationItem;
     }
 
-    private buildAnnotationReference(reference: string, mappedValue: string): ITlvAnnotationComponent {
+    private buildAnnotationReference(reference: string, mappedValue: string): IAnnotatedTlvComponent {
         if (reference == null || reference.length === 0){
             return null;
         }
@@ -100,16 +100,16 @@ export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
         var referenceEnum: AnnotationValueReference = (<any>AnnotationValueReference)[reference];
         var referenceValue: string = AnnotationValueReferenceHelper.stringValueUsingReference(mappedValue, referenceEnum);
 
-        var referenceComponent: ITlvAnnotationComponent = new TlvAnnotationComponent(reference, mappedValue, true, referenceValue);
+        var referenceComponent: IAnnotatedTlvComponent = new DefaultAnnotatedTlvComponent(reference, mappedValue, true, referenceValue);
         return referenceComponent;
     }
 
-    private buildAnnotationComponents(mappedValue: string, resourceItem: ITlvAnnotationResourceItem): ITlvAnnotationComponent[] {
+    private buildAnnotationComponents(mappedValue: string, resourceItem: ITlvAnnotationResourceItem): IAnnotatedTlvComponent[] {
         if (resourceItem.components == null || resourceItem.components.length === 0){
             return null;
         }
 
-        var valueComponents: ITlvAnnotationComponent[] = [];
+        var valueComponents: IAnnotatedTlvComponent[] = [];
         for (var i: number = 0; i < resourceItem.components.length; i++){
             var resourceComponent: ITlvAnnotationResourceItemComponents = resourceItem.components[i];
             var name: string = resourceComponent.name;
@@ -122,7 +122,7 @@ export class ResourceTlvAnnotationProvider implements ITlvAnnotationProvider {
                 triggered = ByteMatcher.matchesBitmatch(mappedValue, resourceComponent.bitmatch);
             }
 
-            var valueComponent: ITlvAnnotationComponent = new TlvAnnotationComponent(name, selector, triggered, value);
+            var valueComponent: IAnnotatedTlvComponent = new DefaultAnnotatedTlvComponent(name, selector, triggered, value);
             valueComponents.push(valueComponent);
         }
         return valueComponents;

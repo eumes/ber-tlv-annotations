@@ -17,7 +17,7 @@
     ],
     "files": [
         "./src/TlvRegistry.ts",
-        "./src/annotation/TlvAnnotation.ts",
+        "./src/annotation/AnnotatedTlv.ts",
         "./src/default/DefaultProvider.ts",
         "./src/helper/AnnotationHelper.ts",
         "./src/helper/ByteHelper.ts",

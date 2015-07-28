@@ -1,6 +1,6 @@
 import { ITlv, TlvType, TlvClass } from 'ber-tlv';
 
-import { ITlvAnnotation, ITlvAnnotationComponent, TlvAnnotation, TlvAnnotationComponent } from '../annotation/TlvAnnotation';
+import { IAnnotatedTlv, IAnnotatedTlvComponent, DefaultAnnotatedTlv, DefaultAnnotatedTlvComponent } from '../annotation/AnnotatedTlv';
 import { AnnotationValueFormat, AnnotationValueFormatHelper } from '../helper/AnnotationHelper';
 import { ITlvAnnotationProvider } from '../provider/TlvAnnotationProvider';
 
@@ -13,12 +13,12 @@ export class DummyTlvAnnotationProvider implements ITlvAnnotationProvider {
       this.name = '<none>';
     }
 
-    lookup(item: ITlv): ITlvAnnotation {
+    lookup(item: ITlv): IAnnotatedTlv {
         var tag: string = item.tag;
         var type: TlvType = item.type;
         var rawValue: string = AnnotationValueFormatHelper.stringValueUsingFormat(item.value, AnnotationValueFormat.VARIABLE_BYTES);
 
-        var annotation: ITlvAnnotation = new TlvAnnotation(tag, type, rawValue);
+        var annotation: IAnnotatedTlv = new DefaultAnnotatedTlv(tag, type, rawValue);
         return annotation;
     }
 }
