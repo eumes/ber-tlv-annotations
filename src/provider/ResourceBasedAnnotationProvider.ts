@@ -27,7 +27,7 @@ export interface ITlvAnnotationResourceItemComponents {
 }
 
 
-export class ResourceTlvAnnotationProvider implements IAnnotationProvider {
+export class ResourceBasedAnnotationProvider implements IAnnotationProvider {
     public name: string;
     public reference: string;
 

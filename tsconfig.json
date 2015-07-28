@@ -18,10 +18,10 @@
     "files": [
         "./src/TlvRegistry.ts",
         "./src/annotation/AnnotatedTlv.ts",
-        "./src/default/DefaultProvider.ts",
         "./src/helper/AnnotationHelper.ts",
         "./src/helper/ByteHelper.ts",
         "./src/helper/ByteMatcher.ts",
+        "./src/packaged/PackagedProviders.ts",
         "./src/provider/AnnotationProvider.ts",
         "./src/provider/DummyAnnotationProvider.ts",
         "./src/provider/ResourceBasedAnnotationProvider.ts",

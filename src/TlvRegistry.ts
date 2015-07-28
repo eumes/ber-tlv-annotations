@@ -2,12 +2,14 @@ import { ITlv, TlvType } from 'ber-tlv';
 import { IAnnotatedTlv, IAnnotatedTlvComponent } from './annotation/AnnotatedTlv';
 import { IAnnotationProvider } from './provider/AnnotationProvider';
 import { DummyAnnotationProvider } from './provider/DummyAnnotationProvider';
+import { PackagedProviders } from './packaged/PackagedProviders';
 
 export interface IAnnotationRegistry {
 
     lookupAnnotation(tlvItem: ITlv): IAnnotatedTlv;
     lookupAnnotations(items: ITlv[]): IAnnotatedTlv[];
     registerProvider(provider: IAnnotationProvider): void;
+    registerPackagedProviders(): void;
 
 }
 
@@ -50,5 +52,11 @@ export class AnnotationRegistry implements IAnnotationRegistry {
 
     public registerProvider(provider: IAnnotationProvider): void {
         this.providers.push(provider);
+    }
+
+    public registerPackagedProviders(): void {
+        this.registerProvider(PackagedProviders.emv());
+        this.registerProvider(PackagedProviders.kernel2());
+        this.registerProvider(PackagedProviders.kernel3());
     }
 }
