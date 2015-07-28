@@ -1,25 +1,39 @@
 {
-  "name": "ber-tlv-annotations",
-  "version": "0.0.0",
-  "author": "Simon Eumes",
-  "license": "MIT",
-  "description": "Resources to annotate TLV tags parsed with ber-tlv. Currently Includes EMV, Kernel2 and Kernel3",
-  "private": true,
-  "main": "./dist/ber-tlv-annotations.js",
-  "typescript": {
-    "definition": "./dist/ber-tlv-annotations.d.ts"
-  },  
-  "dependencies": {
-    "country-data": "0.0.19",
-    "i18n-iso-countries": "^0.8.0"
-  },
-  "devDependencies": {
-    "del": "^1.2.0",
-    "gulp": "^3.9.0",
-    "mocha": "^2.2.1",
-    "gulp-mocha": "^2.0.0",
-    "chai": "^2.1.1",
-    "tsproject": "git+https://github.com/eumes/tsproject.git#bbb87e8b0d8b9be23f13c6783d8b70336cd3fc38",
-    "ber-tlv": "file:../ber-tlv"
-  }  
+    "name": "ber-tlv-annotations",
+    "version": "0.0.1",
+    "description": "Annotation provider for TLV data parsed with the ber-tlv module",
+    "author": "Simon Eumes <simon@sim0n.net>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/eumes/ber-tlv-annotations"
+    },
+    "main": "./module/ber-tlv-annotations.js",
+    "typescript": {
+      "definition": "./module/ber-tlv-annotations.d.ts"
+    },
+    "scripts": {
+      "prepublish": "tsd reinstall -s",
+      "start": "gulp",
+      "build": "gulp build",
+      "test": "gulp test"
+    },
+    "keywords": [
+        "tlv", "ber-tlv", "emv", "annotations", "specs", "pci", "typescript"
+    ],
+    "devDependencies": {
+      "chai": "^2.1.1",
+      "del": "^1.2.0",
+      "gulp": "^3.9.0",
+      "gulp-mocha": "^2.0.0",
+      "gulp-typescript": "^2.8.0",
+      "merge2": "^0.3.6",
+      "mocha": "^2.2.1"
+    },
+    "dependencies": {
+      "country-data": "0.0.19",
+      "i18n-iso-countries": "^0.8.0",
+      "ber-tlv": "^0.0.1",
+      "octet-buffer": "^0.0.1"
+    }
 }

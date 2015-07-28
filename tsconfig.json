@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "module": "commonjs",
+        "removeComments": true,
+        "sourceMap": false,
+        "target": "es5",
+        "noImplicitAny": true,
+        "outDir": "./dist",
+        "rootDir": "./src"
+    },
+    "compileOnSave": false,
+    "filesGlob": [
+        "./src/**/*.ts",
+        "./typings/tsd.d.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./src/AnnotationRegistry.ts",
+        "./src/annotation/AnnotatedTlv.ts",
+        "./src/helper/AnnotationHelper.ts",
+        "./src/helper/ByteHelper.ts",
+        "./src/helper/ByteMatcher.ts",
+        "./src/packaged/PackagedProviders.ts",
+        "./src/provider/AnnotationProvider.ts",
+        "./src/provider/DummyAnnotationProvider.ts",
+        "./src/provider/ResourceBasedAnnotationProvider.ts",
+        "./typings/tsd.d.ts"
+    ]
+}
