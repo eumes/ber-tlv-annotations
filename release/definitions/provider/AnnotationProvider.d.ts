@@ -3,5 +3,5 @@ import { IAnnotatedTlv } from '../annotation/AnnotatedTlv';
 export interface IAnnotationProvider {
     name: string;
     reference: string;
-    lookup(item: ITlv): IAnnotatedTlv;
+    annotate(item: ITlv): IAnnotatedTlv;
 }
