@@ -19,7 +19,7 @@
       "test": "gulp test"
     },
     "keywords": [
-        "tlv", "ber-tlv", "emv", "annotations", "specs", "pci", "typescript"
+        "tlv", "ber-tlv", "emv", "annotations", "specs", "typescript"
     ],
     "devDependencies": {
       "chai": "^2.1.1",
