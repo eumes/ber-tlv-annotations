@@ -13,12 +13,12 @@ gulp.task('typescript.build', ['typescript.clean'], function() {
   var tsResult = tsProject.src()
       .pipe(ts(tsProject));
 
+  gulp.src(['./annotations/**/*']).pipe(gulp.dest('./release/annotations'));
 
   return merge([
-      tsResult.dts.pipe(gulp.dest('release/definitions')),
-      tsResult.js.pipe(gulp.dest('release/js'))
+      tsResult.dts.pipe(gulp.dest('./release/definitions')),
+      tsResult.js.pipe(gulp.dest('./release/js'))
   ]);
-  return tsResult.js.pipe(gulp.dest('release'));
 });
 
 gulp.task('build', ['typescript.build']);

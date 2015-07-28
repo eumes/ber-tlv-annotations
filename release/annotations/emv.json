@@ -1,0 +1,956 @@
+{
+    "name": "EMV",
+    "reference": "EMV Books 3, Application Specifications",
+    "items": [
+        {
+            "tag": "5F57",
+            "name": "Account Type",
+            "description": "Indicates the type of account selected on the terminal, coded as specified in Annex G",
+            "format": "NUMERIC"
+        },
+        {
+            "tag": "9F1B",
+            "name": "Terminal Floor Limit",
+            "description": "Indicates the floor limit in the terminal in conjunction with the AID",
+            "format": "BINARY_NUMBER"
+        },  
+        {
+            "tag": "9F37",
+            "name": "Unpredictable Number",
+            "description": "Value to provide variability and uniqueness to the generation of a cryptogram",
+            "format": "VARIABLE"
+        },   
+        {
+            "tag": "9F40",
+            "name": "Additional Terminal Capabilities",
+            "description": "Indicates the data input and output capabilities of the terminal",
+            "format": "BINARY_FLAGS",
+            "components":[
+                {
+                    "bitmask": "8000000000",
+                    "name": "Cash"
+                },
+                {
+                    "bitmask": "4000000000",
+                    "name": "Goods"
+                },
+                {
+                    "bitmask": "2000000000",
+                    "name": "Services"
+                },
+                {
+                    "bitmask": "1000000000",
+                    "name": "Cashback"
+                },
+                {
+                    "bitmask": "0800000000",
+                    "name": "Inquiry"
+                },
+                {
+                    "bitmask": "0400000000",
+                    "name": "Transfer"
+                },
+                {
+                    "bitmask": "0200000000",
+                    "name": "Payment"
+                },
+                {
+                    "bitmask": "0100000000",
+                    "name": "Administrative"
+                },
+
+
+                {
+                    "bitmask": "0080000000",
+                    "name": "Cash Deposit"
+                },
+                {
+                    "bitmask": "004F000000",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "0000800000",
+                    "name": "Numeric keys"
+                },
+                {
+                    "bitmask": "0000400000",
+                    "name": "Alphabetic and special characters keys"
+                },
+                {
+                    "bitmask": "0000200000",
+                    "name": "Command keys"
+                },
+                {
+                    "bitmask": "0000100000",
+                    "name": "Function keys"
+                },
+                {
+                    "bitmask": "00000F0000",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "0000008000",
+                    "name": "Print, attendant"
+                },
+                {
+                    "bitmask": "0000004000",
+                    "name": "Print, cardholder"
+                },
+                {
+                    "bitmask": "0000002000",
+                    "name": "Display, attendant"
+                },
+                {
+                    "bitmask": "0000001000",
+                    "name": "Display, cardholder"
+                },
+                {
+                    "bitmask": "0000000C00",
+                    "name": "RFU"
+                },
+                {
+                    "bitmask": "0000000300",
+                    "name": "Code tables"
+                },
+
+
+                {
+                    "bitmask": "00000000FF",
+                    "name": "Code tables"
+                }
+            ]
+        },
+        {
+            "tag": "9F02",
+            "name": "Amount, Authorised (Numeric)",
+            "description": "Authorised amount of the transaction (excluding adjustments)",
+            "format": "NUMERIC"
+        },
+        {
+            "tag": "9F03",
+            "name": "Amount, Other (Numeric)",
+            "description": "Secondary amount associated with the transaction representing a cashback amount",
+            "format": "NUMERIC"
+        },
+        {
+            "tag": "9F26",
+            "name": "Application Cryptogram",
+            "description": "Cryptogram returned by the ICC in response of the GENERATE AC command",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "9F42",
+            "name": "Application Currency Code",
+            "description": "Indicates the currency in which the account is managed according to ISO 4217",
+            "format": "NUMERIC",
+            "reference": "ISO_4217"
+        },
+        {
+            "tag": "9F44",
+            "name": "Application Currency Exponent",
+            "description": "Indicates the implied position of the decimal point from the right of the amount represented according to ISO 4217",
+            "format": "ALPHANUMERIC_SPECIAL"
+        },
+        {
+            "tag": "5F25",
+            "name": "Application Effective Date",
+            "description": "Date from which the application may be used",
+            "format": "YYMMDD"
+        },
+        {
+            "tag": "5F24",
+            "name": "Application Expiration Date",
+            "description": "Date after which application expires",
+            "format": "YYMMDD"         
+        },                                        
+        {
+            "tag": "9F06",
+            "name": "Application Identifier (AID) – terminal",
+            "description": "Identifies the application as described in ISO/IEC 7816-5 ",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "82",
+            "name": "Application Interchange Profile",
+            "description": "Indicates the capabilities of the card to support specific functions in the application",
+            "format": "BINARY_FLAGS",
+            "components":[
+                {
+                    "bitmask": "8000",
+                    "name": "RFU"
+                },
+                {
+                    "bitmask": "4000",
+                    "name": "SDA supported"
+                },
+                {
+                    "bitmask": "2000",
+                    "name": "DDA supported"
+                },
+                {
+                    "bitmask": "1000",
+                    "name": "Cardholder verification is supported"
+                },
+                {
+                    "bitmask": "0800",
+                    "name": "Terminal risk management is to be performed"
+                },
+                {
+                    "bitmask": "0400",
+                    "name": "Issuer authentication is supported"
+                },
+                {
+                    "bitmask": "0200",
+                    "name": "RFU"
+                },
+                {
+                    "bitmask": "0100",
+                    "name": "CDA supported"
+                },
+
+
+                {
+                    "bitmask": "0080",
+                    "name": "RFU (Contactless)"
+                },
+                {
+                    "bitmask": "007F",
+                    "name": "RFU"
+                }
+            ]
+        },    
+        {
+            "tag": "50",
+            "name": "Application Label",
+            "description": "Mnemonic associated with the AID according to ISO/IEC 7816-5",
+            "format": "ALPHANUMERIC_SPECIAL"
+        },
+        {
+            "tag": "9F12",
+            "name": "Application Preferred Name",
+            "description": "Preferred mnemonic associated with the AID",
+            "format": "ALPHANUMERIC_SPECIAL"
+        },            
+        {
+            "tag": "5A",
+            "name": "Application Primary Account Number (PAN)",
+            "description": "Valid cardholder account number",
+            "format": "COMPRESSED_NUMERIC"
+        },
+        {
+            "tag": "5F34",
+            "name": "Application Primary Account Number (PAN) Sequence Number",
+            "description": "Identifies and differentiates cards with the same PAN",
+            "format": "NUMERIC"
+        },    
+        {
+            "tag": "9F36",
+            "name": "Application Transaction Counter (ATC)",
+            "description": "Counter maintained by the application in the ICC (incrementing the ATC is managed by the ICC)",
+            "format": "BINARY_NUMBER"
+        },
+        {
+            "tag": "9F07",
+            "name": "Application Usage Control",
+            "description": "Indicates issuer’s specified restrictions on the geographic usage and services allowed for the application",
+            "format": "BINARY_FLAGS",
+            "components":[
+                {
+                    "bitmask": "8000",
+                    "name": "Valid for domestic cash transactions"
+                },
+                {
+                    "bitmask": "4000",
+                    "name": "Valid for international cash transactions"
+                },
+                {
+                    "bitmask": "2000",
+                    "name": "Valid for domestic goods"
+                },
+                {
+                    "bitmask": "1000",
+                    "name": "Valid for international goods"
+                },
+                {
+                    "bitmask": "0800",
+                    "name": "Valid for domestic services"
+                },
+                {
+                    "bitmask": "0400",
+                    "name": "Valid for international services"
+                },
+                {
+                    "bitmask": "0200",
+                    "name": "Valid at ATMs"
+                },
+                {
+                    "bitmask": "0100",
+                    "name": "Valid at terminals other than ATMs"
+                },
+
+
+                {
+                    "bitmask": "0080",
+                    "name": "Domestic cashback allowed"
+                },
+                {
+                    "bitmask": "0040",
+                    "name": "International cashback allowed"
+                },
+                {
+                    "bitmask": "003F",
+                    "name": "RFU"
+                }
+            ]
+        },         
+        {
+            "tag": "9F08",
+            "name": "Application Version Number (ICC)",
+            "description": "Version number assigned by the payment system for the application",
+            "format": "BINARY_NUMBER"
+        },
+        {
+            "tag": "9F09",
+            "name": "Application Version Number (Terminal)",
+            "description": "Version number assigned by the payment system for the application",
+            "format": "BINARY_NUMBER"
+        },    
+        {
+            "tag": "8A",
+            "name": "Authorisation Response Code",
+            "description": "Code that defines the disposition of a message",
+            "format": "ALPHANUMERIC",
+            "components":[
+                {
+                    "pattern": "00",
+                    "name": "Approved"
+                },
+                {
+                    "pattern": "05",
+                    "name": "Declined"
+                }
+            ]
+        },
+        {
+            "tag": "5F54",
+            "name": "Bank Identifier Code (BIC)",
+            "description": "Uniquely identifies a bank as defined in ISO 9362",
+            "format": "VARIABLE"
+        },         
+        {
+            "tag": "5F20",
+            "name": "Cardholder Name",
+            "description": "Indicates cardholder name according to ISO 7813",
+            "format": "ALPHANUMERIC_SPECIAL"
+        },
+        {
+            "tag": "9F0B",
+            "name": "Cardholder Name Extended",
+            "description": "Indicates the whole cardholder name when greater than 26 characters using the same coding convention as in ISO 7813",
+            "format": "ALPHANUMERIC_SPECIAL"
+        }, 
+        {
+            "tag": "9F01",
+            "name": "Acquirer Identifier",
+            "description": "Uniquely identifies the acquirer within each payment system.",
+            "format": "NUMERIC"
+        },
+        {
+            "tag": "8E",
+            "name": "Cardholder Verification Method (CVM) List",
+            "description": "Identifies a method of verification of the cardholder supported by the application",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "9F34",
+            "name": "Cardholder Verification Method (CVM) Results",
+            "description": "Indicates the results of the last CVM performed",
+            "format": "BINARY_PATTERN",
+            "components":[
+                {
+                    "bitpattern": "0xxxxxxx xxxxxxxx xxxxxxxx",
+                    "name": "RFU"
+                },
+                {
+                    "bitpattern": "x0xxxxxx xxxxxxxx xxxxxxxx",
+                    "name": "Fail cardholder verification if this CVM is unsuccessful"
+                },
+                {
+                    "bitpattern": "x1xxxxxx xxxxxxxx xxxxxxxx",
+                    "name": "Apply succeeding CV Rule if this CVM is unsuccessful"
+                },
+                {
+                    "bitpattern": "xx000000 xxxxxxxx xxxxxxxx",
+                    "name": "Fail CVM processing"
+                },
+                {
+                    "bitpattern": "xx000001 xxxxxxxx xxxxxxxx",
+                    "name": "Plaintext PIN verification performed by ICC"
+                },
+                {
+                    "bitpattern": "xx000010 xxxxxxxx xxxxxxxx",
+                    "name": "Enciphered PIN verified online"
+                },
+                {
+                    "bitpattern": "xx000011 xxxxxxxx xxxxxxxx",
+                    "name": "Plaintext PIN verification performed by ICC and signature (paper)"
+                },
+                {
+                    "bitpattern": "xx000100 xxxxxxxx xxxxxxxx",
+                    "name": "Enciphered PIN verification performed by ICC"
+                },
+                {
+                    "bitpattern": "xx000101 xxxxxxxx xxxxxxxx",
+                    "name": "Enciphered PIN verification performed by ICC and signature (paper)"
+                },
+                {
+                    "bitpattern": "xx011110 xxxxxxxx xxxxxxxx",
+                    "name": "Signature (paper)"
+                },
+                {
+                    "bitpattern": "xx011111 xxxxxxxx xxxxxxxx",
+                    "name": "No CVM required"
+                },
+                {
+                    "bitpattern": "xx111111 xxxxxxxx xxxxxxxx",
+                    "name": "This value is not available for use"
+                },
+  
+
+                {
+                    "bitpattern": "xxxxxxxx xxxx0000 xxxxxxxx",
+                    "name": "Always"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxx0001 xxxxxxxx",
+                    "name": "If unattended cash"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxx0010 xxxxxxxx",
+                    "name": "If not unattended cash and not manual cash and not purchase with cashback"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxx0011 xxxxxxxx",
+                    "name": "If terminal supports the CVM"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxx0100 xxxxxxxx",
+                    "name": "If manual cash"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxx0101 xxxxxxxx",
+                    "name": "If purchase with cashback"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxx0110 xxxxxxxx",
+                    "name": "If transaction is in the application currency 21 and is under X value"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxx0111 xxxxxxxx",
+                    "name": "If transaction is in the application currency and is over X value"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxx1000 xxxxxxxx",
+                    "name": "If transaction is in the application currency and is under Y value"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxx1001 xxxxxxxx",
+                    "name": "If transaction is in the application currency and is over Y value"
+                },
+  
+
+                {
+                    "bitpattern": "xxxxxxxx xxxxxxxx xxxxxx00",
+                    "name": "Unknown (for example, for signature)"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxxxxxx xxxxxx01",
+                    "name": "Failed (for example, for offline PIN)"
+                },
+                {
+                    "bitpattern": "xxxxxxxx xxxxxxxx xxxxxx10",
+                    "name": "Successful (for example, for offline PIN)"
+                }
+            ]
+        },         
+        {
+            "tag": "9F27",
+            "name": "Cryptogram Information Data",
+            "description": "Indicates the type of cryptogram and the actions to be performed by the terminal",
+            "format": "BINARY_PATTERN",
+            "components":[
+                {
+                    "bitpattern": "00xxxxxx",
+                    "name": "AAC"
+                },
+                {
+                    "bitpattern": "01xxxxxx",
+                    "name": "TC"
+                },
+                {
+                    "bitpattern": "10xxxxxx",
+                    "name": "ARQC"
+                },
+                {
+                    "bitpattern": "11xxxxxx",
+                    "name": "RFU"
+                },
+                {
+                    "bitpattern": "xx00xxxx",
+                    "name": "Payment System-specific data"
+                },
+                {
+                    "bitpattern": "xxxx0xxx",
+                    "name": "No advice required"
+                },
+                {
+                    "bitpattern": "xxxxx000",
+                    "name": "No information given"
+                }
+            ]
+        },
+        {
+            "tag": "9F45",
+            "name": "Data Authentication Code",
+            "description": "An issuer assigned value that is retained by the terminal during the verification process of the Signed Static Application Data",
+            "format": "VARIABLE"
+        },    
+        {
+            "tag": "84",
+            "name": "Dedicated File Name (DF)",
+            "description": "Identifies the name of the DF as described in ISO/IEC 7816-4",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "9F1E",
+            "name": "Interface Device (IFD) Serial Number",
+            "description": "Unique and permanent serial number assigned to the IFD by the manufacturer",
+            "format": "ALPHANUMERIC"
+        },       
+        {
+            "tag": "5F53",
+            "name": "International Bank Account Number (IBAN)",
+            "description": "Uniquely identifies the account of a customer at a financial institution as defined in ISO 13616.",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "9F10",
+            "name": "Issuer Application Data",
+            "description": "Contains proprietary application data for transmission to the issuer in an online transaction.",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "91",
+            "name": "Issuer Authentication Data",
+            "description": "Data sent to the ICC for online issuer authentication",
+            "format": "VARIABLE"
+        },    
+        {
+            "tag": "9F11",
+            "name": "Issuer Code Table Index",
+            "description": "Indicates the code table according to ISO/IEC 8859 for displaying the Application Preferred Name",
+            "format": "NUMERIC"
+        },
+        {
+            "tag": "86",
+            "name": "Issuer Script Command",
+            "description": "Contains a command for transmission to the ICC",
+            "format": "VARIABLE"
+        },   
+        {
+            "tag": "9F18",
+            "name": "Issuer Script Identifier",
+            "description": "Identification of the Issuer Script",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "71",
+            "name": "Issuer Script Template 1",
+            "description": "Contains proprietary issuer data for transmission to the ICC before the second GENERATE AC command"
+        },    
+        {
+            "tag": "71",
+            "name": "Issuer Script Template 2",
+            "description": "Contains proprietary issuer data for transmission to the ICC after the second GENERATE AC command"
+        },
+        {
+            "tag": "5F2D",
+            "name": "Language Preference",
+            "description": "1-4 languages stored in order of preference, each represented by 2 alphabetical characters according to ISO 639",
+            "format": "ALPHANUMERIC"
+        },   
+        {
+            "tag": "9F13",
+            "name": "Last Online Application Transaction Counter (ATC) Register",
+            "description": "ATC value of the last transaction that went online",
+            "format": "BINARY_NUMBER"
+        },
+        {
+            "tag": "9F15",
+            "name": "Merchant Category Code",
+            "description": "Classifies the type of business being done by the merchant, represented according to ISO 8583:1993 for Card Acceptor Business Code",
+            "format": "NUMERIC"
+        },    
+        {
+            "tag": "9F16",
+            "name": "Merchant Identifier",
+            "description": "When concatenated with the Acquirer Identifier, uniquely identifies a given merchant",
+            "format": "ALPHANUMERIC_SPECIAL"
+        },
+        {
+            "tag": "9F4E",
+            "name": "Merchant Name and Location",
+            "description": "Indicates the name and location of the merchant",
+            "format": "ALPHANUMERIC_SPECIAL"
+        },   
+        {
+            "tag": "5F30",
+            "name": "Service Code",
+            "description": "Service code as defined in ISO/IEC 7813 for track 1 and track 2",
+            "format": "NUMERIC"
+        },    
+        {
+            "tag": "9F33",
+            "name": "Terminal Capabilities",
+            "description": "Indicates the card data input, CVM, and security capabilities of the terminal",
+            "format": "BINARY_FLAGS",
+            "components":[
+                {
+                    "bitmask": "80 00 00",
+                    "name": "Manual key entry"
+                },
+                {
+                    "bitmask": "40 00 00",
+                    "name": "Magnetic stripe"
+                },
+                {
+                    "bitmask": "20 00 00",
+                    "name": "IC with contacts"
+                },
+                {
+                    "bitmask": "1F 00 00",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "00 80 00",
+                    "name": "Plaintext PIN for ICC verification"
+                },
+                {
+                    "bitmask": "00 40 00",
+                    "name": "Enciphered PIN for online verification"
+                },
+                {
+                    "bitmask": "00 20 00",
+                    "name": "Signature (paper)"
+                },
+                {
+                    "bitmask": "00 10 00",
+                    "name": "Enciphered PIN for offline verification"
+                },
+                {
+                    "bitmask": "00 08 00",
+                    "name": "No CVM Required"
+                },
+                {
+                    "bitmask": "00 07 00",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "00 00 80",
+                    "name": "SDA"
+                },
+                {
+                    "bitmask": "00 00 40",
+                    "name": "DDA"
+                },
+                {
+                    "bitmask": "00 00 20",
+                    "name": "Card capture"
+                },
+                {
+                    "bitmask": "00 00 10",
+                    "name": "RFU"
+                },
+                {
+                    "bitmask": "00 00 08",
+                    "name": "CDA"
+                },
+                {
+                    "bitmask": "00 00 07",
+                    "name": "RFU"
+                }
+            ]
+        },
+        {
+            "tag": "9F1A",
+            "name": "Terminal Country Code",
+            "description": "Indicates the country of the terminal, represented according to ISO 3166",
+            "format": "NUMERIC",
+            "reference": "ISO_3166"
+        },                                                                     
+        {
+            "tag": "9F1C",
+            "name": "Terminal Identification",
+            "description": "Designates the unique location of a terminal at a merchant",
+            "format": "ALPHANUMERIC_SPECIAL"
+        },  
+        {
+            "tag": "9F35",
+            "name": "Terminal Type",
+            "description": "Indicates the environment of the terminal, its communications capability, and its operational control",
+            "format": "VARIABLE",
+            "components":[
+                {
+                    "pattern": "21",
+                    "name": "Online only (attended)"
+                },
+                {
+                    "pattern": "22",
+                    "name": "Offline with online capability (attended)"
+                },
+                {
+                    "pattern": "23",
+                    "name": "Offline only (attended)"
+                }            
+            ]
+        },
+        {
+            "tag": "95",
+            "name": "Terminal Verification Results",
+            "description": "Status of the different functions as seen from the terminal",
+            "format": "BINARY_FLAGS",
+            "components":[
+                {
+                    "bitmask": "8000000000",
+                    "name": "Offline data authentication was not performed"
+                },
+                {
+                    "bitmask": "4000000000",
+                    "name": "SDA failed"
+                },
+                {
+                    "bitmask": "2000000000",
+                    "name": "ICC data missing"
+                },
+                {
+                    "bitmask": "1000000000",
+                    "name": "Card appears on terminal exception file"
+                },
+                {
+                    "bitmask": "0800000000",
+                    "name": "DDA failed"
+                },
+                {
+                    "bitmask": "0400000000",
+                    "name": "CDA failed"
+                },
+                {
+                    "bitmask": "0300000000",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "0080000000",
+                    "name": "ICC and terminal have different application versions"
+                },
+                {
+                    "bitmask": "0040000000",
+                    "name": "Expired application"
+                },
+                {
+                    "bitmask": "0020000000",
+                    "name": "Application not yet effective"
+                },
+                {
+                    "bitmask": "0010000000",
+                    "name": "Requested service not allowed for card product"
+                },
+                {
+                    "bitmask": "0008000000",
+                    "name": "New card"
+                },
+                {
+                    "bitmask": "0007000000",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "0000800000",
+                    "name": "Cardholder verification was not successful"
+                },
+                {
+                    "bitmask": "0000400000",
+                    "name": "Unrecognised CVM"
+                },
+                {
+                    "bitmask": "0000200000",
+                    "name": "PIN Try Limit exceeded"
+                },
+                {
+                    "bitmask": "0000100000",
+                    "name": "PIN entry required and PIN pad not present or not working"
+                },
+                {
+                    "bitmask": "0000080000",
+                    "name": "PIN entry required, PIN pad present, but PIN was not entered"
+                },
+                {
+                    "bitmask": "0000040000",
+                    "name": "Online PIN entered"
+                },
+                {
+                    "bitmask": "0000030000",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "0000008000",
+                    "name": "Transaction exceeds floor limit"
+                },
+                {
+                    "bitmask": "0000004000",
+                    "name": "Lower consecutive offline limit exceeded"
+                },
+                {
+                    "bitmask": "0000002000",
+                    "name": "Upper consecutive offline limit exceeded"
+                },
+                {
+                    "bitmask": "0000001000",
+                    "name": "Transaction selected randomly for online processing"
+                },
+                {
+                    "bitmask": "0000000800",
+                    "name": "Merchant forced transaction online"
+                },
+                {
+                    "bitmask": "0000000700",
+                    "name": "RFU"
+                },
+
+
+                {
+                    "bitmask": "0000000080",
+                    "name": "Default TDOL used"
+                },
+                {
+                    "bitmask": "0000000040",
+                    "name": "Issuer authentication failed"
+                },
+                {
+                    "bitmask": "0000000020",
+                    "name": "Script processing failed before final GENERATE AC"
+                },
+                {
+                    "bitmask": "0000000010",
+                    "name": "Script processing failed after final GENERATE AC"
+                },
+                {
+                    "bitmask": "000000000F",
+                    "name": "RFU"
+                }
+            ]
+        },  
+        {
+            "tag": "57",
+            "name": "Track 2 Equivalent Data",
+            "description": "Contains the data elements of track 2 according to ISO/IEC 7813, excluding start sentinel, end sentinel, and Longitudinal Redundancy Check (LRC)",
+            "format": "VARIABLE"
+        },
+        {
+            "tag": "5F2A",
+            "name": "Transaction Currency Code",
+            "description": "Indicates the currency code of the transaction according to ISO 4217",
+            "format": "NUMERIC",
+            "reference": "ISO_4217"
+        },    
+        {
+            "tag": "5F36",
+            "name": "Transaction Currency Exponent",
+            "description": "Indicates the implied position of the decimal point from the right of the transaction amount represented according to ISO 4217",
+            "format": "NUMERIC"
+        },
+        {
+            "tag": "9A",
+            "name": "Transaction Date",
+            "description": "Local date that the transaction was authorised",
+            "format": "YYMMDD"
+        },  
+        {
+            "tag": "9F41",
+            "name": "Transaction Sequence Counter",
+            "description": "Counter maintained by the terminal that is incremented by one for each transaction",
+            "format": "NUMERIC"
+        },
+        {
+            "tag": "9B",
+            "name": "Transaction Status Information",
+            "description": "Indicates the functions performed in a transaction",
+            "format": "BINARY_FLAGS",
+            "components":[
+                {
+                    "bitmask": "8000",
+                    "name": "Offline data authentication was performed"
+                },
+                {
+                    "bitmask": "4000",
+                    "name": "Cardholder verification was performed"
+                },
+                {
+                    "bitmask": "2000",
+                    "name": "Card risk management was performed"
+                },
+                {
+                    "bitmask": "1000",
+                    "name": "Issuer authentication was performed"
+                },
+                {
+                    "bitmask": "0800",
+                    "name": "Terminal risk management was performed"
+                },
+                {
+                    "bitmask": "0400",
+                    "name": "Script processing was performed"
+                },
+                {
+                    "bitmask": "03FF",
+                    "name": "RFU"
+                }
+            ]
+        },    
+        {
+            "tag": "9F21",
+            "name": "Transaction Time",
+            "description": "Local time that the transaction was authorised",
+            "format": "HHMMSS"
+        },
+        {
+            "tag": "9C",
+            "name": "Transaction Type",
+            "description": "Indicates the type of financial transaction, represented by the first two digits of the ISO 8583:1987 Processing Code",
+            "format": "VARIABLE",
+            "components":[
+                {
+                    "pattern": "00",
+                    "name": "Sale"
+                },
+                {
+                    "pattern": "20",
+                    "name": "Refund"
+                }
+
+            ]
+        }
+    ]
+}

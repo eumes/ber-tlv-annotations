@@ -40,6 +40,36 @@ declare module BerTlvAnnotations{
         registerProvider(provider: IAnnotationProvider): void;
         registerPackagedProviders(): void;
     }
+
+    export interface ITlvAnnotationResource {
+        name: string;
+        reference: string;
+        items: ITlvAnnotationResourceItem[];
+    }
+    export interface ITlvAnnotationResourceItem {
+        tag: string;
+        name: string;
+        description: string;
+        format?: string;
+        reference?: string;
+        components?: ITlvAnnotationResourceItemComponents[];
+    }
+    export interface ITlvAnnotationResourceItemComponents {
+        name: string;
+        bitmatch: string;
+    }
+    export class ResourceBasedAnnotationProvider implements IAnnotationProvider {
+        resource: ITlvAnnotationResource;
+        name: string;
+        reference: string;
+        constructor(resource: ITlvAnnotationResource);
+        annotate(item: BerTlv.ITlv): IAnnotatedTlv;
+        private buildAnnotationConstructed(item, resourceItem);
+        private buildAnnotationPrimitive(item, resourceItem);
+        private buildAnnotationReference(reference, mappedValue);
+        private buildAnnotationComponents(mappedValue, resourceItem);
+        private findItemWithTag(tag);
+    }
 }
 
 declare module 'ber-tlv-annotations'{

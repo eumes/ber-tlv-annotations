@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+/annotations
 /release/*/*-Specs.*
 /src/*/*-Specs.*
 /typings
