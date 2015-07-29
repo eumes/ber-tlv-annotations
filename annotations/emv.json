@@ -13,13 +13,13 @@
             "name": "Terminal Floor Limit",
             "description": "Indicates the floor limit in the terminal in conjunction with the AID",
             "format": "BINARY_NUMBER"
-        },  
+        },
         {
             "tag": "9F37",
             "name": "Unpredictable Number",
             "description": "Value to provide variability and uniqueness to the generation of a cryptogram",
             "format": "VARIABLE"
-        },   
+        },
         {
             "tag": "9F40",
             "name": "Additional Terminal Capabilities",
@@ -27,99 +27,99 @@
             "format": "BINARY_FLAGS",
             "components":[
                 {
-                    "bitmask": "8000000000",
+                    "bitmatch": "1&8",
                     "name": "Cash"
                 },
                 {
-                    "bitmask": "4000000000",
+                    "bitmatch": "1&7",
                     "name": "Goods"
                 },
                 {
-                    "bitmask": "2000000000",
+                    "bitmatch": "1&6",
                     "name": "Services"
                 },
                 {
-                    "bitmask": "1000000000",
+                    "bitmatch": "1&5",
                     "name": "Cashback"
                 },
                 {
-                    "bitmask": "0800000000",
+                    "bitmatch": "1&4",
                     "name": "Inquiry"
                 },
                 {
-                    "bitmask": "0400000000",
+                    "bitmatch": "1&3",
                     "name": "Transfer"
                 },
                 {
-                    "bitmask": "0200000000",
+                    "bitmatch": "1&2",
                     "name": "Payment"
                 },
                 {
-                    "bitmask": "0100000000",
+                    "bitmatch": "1&1",
                     "name": "Administrative"
                 },
 
 
                 {
-                    "bitmask": "0080000000",
+                    "bitmask": "2&8",
                     "name": "Cash Deposit"
                 },
                 {
-                    "bitmask": "004F000000",
+                    "bitmask": "2&4F",
                     "name": "RFU"
                 },
 
 
                 {
-                    "bitmask": "0000800000",
+                    "bitmask": "3&8",
                     "name": "Numeric keys"
                 },
                 {
-                    "bitmask": "0000400000",
+                    "bitmask": "3&7",
                     "name": "Alphabetic and special characters keys"
                 },
                 {
-                    "bitmask": "0000200000",
+                    "bitmask": "3&6",
                     "name": "Command keys"
                 },
                 {
-                    "bitmask": "0000100000",
+                    "bitmask": "3&5",
                     "name": "Function keys"
                 },
                 {
-                    "bitmask": "00000F0000",
+                    "bitmask": "3&0F",
                     "name": "RFU"
                 },
 
 
                 {
-                    "bitmask": "0000008000",
+                    "bitmask": "4&8",
                     "name": "Print, attendant"
                 },
                 {
-                    "bitmask": "0000004000",
+                    "bitmask": "4&7",
                     "name": "Print, cardholder"
                 },
                 {
-                    "bitmask": "0000002000",
+                    "bitmask": "4&6",
                     "name": "Display, attendant"
                 },
                 {
-                    "bitmask": "0000001000",
+                    "bitmask": "4&5",
                     "name": "Display, cardholder"
                 },
                 {
-                    "bitmask": "0000000C00",
+                    "bitmask": "4&0C",
                     "name": "RFU"
                 },
                 {
-                    "bitmask": "0000000300",
+                    "bitmask": "4&03",
                     "name": "Code tables"
                 },
 
 
                 {
-                    "bitmask": "00000000FF",
+                    "bitmask": "5&FF",
                     "name": "Code tables"
                 }
             ]
@@ -165,8 +165,8 @@
             "tag": "5F24",
             "name": "Application Expiration Date",
             "description": "Date after which application expires",
-            "format": "YYMMDD"         
-        },                                        
+            "format": "YYMMDD"
+        },
         {
             "tag": "9F06",
             "name": "Application Identifier (AID) – terminal",
@@ -180,49 +180,49 @@
             "format": "BINARY_FLAGS",
             "components":[
                 {
-                    "bitmask": "8000",
+                    "bitmask": "1&8",
                     "name": "RFU"
                 },
                 {
-                    "bitmask": "4000",
+                    "bitmask": "1&7",
                     "name": "SDA supported"
                 },
                 {
-                    "bitmask": "2000",
+                    "bitmask": "1&6",
                     "name": "DDA supported"
                 },
                 {
-                    "bitmask": "1000",
+                    "bitmask": "1&5",
                     "name": "Cardholder verification is supported"
                 },
                 {
-                    "bitmask": "0800",
+                    "bitmask": "1&4",
                     "name": "Terminal risk management is to be performed"
                 },
                 {
-                    "bitmask": "0400",
+                    "bitmask": "1&3",
                     "name": "Issuer authentication is supported"
                 },
                 {
-                    "bitmask": "0200",
+                    "bitmask": "1&2",
                     "name": "RFU"
                 },
                 {
-                    "bitmask": "0100",
+                    "bitmask": "1&1",
                     "name": "CDA supported"
                 },
 
 
                 {
-                    "bitmask": "0080",
+                    "bitmask": "2&8",
                     "name": "RFU (Contactless)"
                 },
                 {
-                    "bitmask": "007F",
+                    "bitmask": "2&7F",
                     "name": "RFU"
                 }
             ]
-        },    
+        },
         {
             "tag": "50",
             "name": "Application Label",
@@ -234,7 +234,7 @@
             "name": "Application Preferred Name",
             "description": "Preferred mnemonic associated with the AID",
             "format": "ALPHANUMERIC_SPECIAL"
-        },            
+        },
         {
             "tag": "5A",
             "name": "Application Primary Account Number (PAN)",
@@ -246,7 +246,7 @@
             "name": "Application Primary Account Number (PAN) Sequence Number",
             "description": "Identifies and differentiates cards with the same PAN",
             "format": "NUMERIC"
-        },    
+        },
         {
             "tag": "9F36",
             "name": "Application Transaction Counter (ATC)",
@@ -260,53 +260,53 @@
             "format": "BINARY_FLAGS",
             "components":[
                 {
-                    "bitmask": "8000",
+                    "bitmask": "1&8",
                     "name": "Valid for domestic cash transactions"
                 },
                 {
-                    "bitmask": "4000",
+                    "bitmask": "1&7",
                     "name": "Valid for international cash transactions"
                 },
                 {
-                    "bitmask": "2000",
+                    "bitmask": "1&6",
                     "name": "Valid for domestic goods"
                 },
                 {
-                    "bitmask": "1000",
+                    "bitmask": "1&5",
                     "name": "Valid for international goods"
                 },
                 {
-                    "bitmask": "0800",
+                    "bitmask": "1&4",
                     "name": "Valid for domestic services"
                 },
                 {
-                    "bitmask": "0400",
+                    "bitmask": "1&3",
                     "name": "Valid for international services"
                 },
                 {
-                    "bitmask": "0200",
+                    "bitmask": "1&2",
                     "name": "Valid at ATMs"
                 },
                 {
-                    "bitmask": "0100",
+                    "bitmask": "1&1",
                     "name": "Valid at terminals other than ATMs"
                 },
 
 
                 {
-                    "bitmask": "0080",
+                    "bitmask": "2&8",
                     "name": "Domestic cashback allowed"
                 },
                 {
-                    "bitmask": "0040",
+                    "bitmask": "2&7",
                     "name": "International cashback allowed"
                 },
                 {
-                    "bitmask": "003F",
+                    "bitmask": "2&3F",
                     "name": "RFU"
                 }
             ]
-        },         
+        },
         {
             "tag": "9F08",
             "name": "Application Version Number (ICC)",
@@ -318,7 +318,7 @@
             "name": "Application Version Number (Terminal)",
             "description": "Version number assigned by the payment system for the application",
             "format": "BINARY_NUMBER"
-        },    
+        },
         {
             "tag": "8A",
             "name": "Authorisation Response Code",
@@ -340,7 +340,7 @@
             "name": "Bank Identifier Code (BIC)",
             "description": "Uniquely identifies a bank as defined in ISO 9362",
             "format": "VARIABLE"
-        },         
+        },
         {
             "tag": "5F20",
             "name": "Cardholder Name",
@@ -352,7 +352,7 @@
             "name": "Cardholder Name Extended",
             "description": "Indicates the whole cardholder name when greater than 26 characters using the same coding convention as in ISO 7813",
             "format": "ALPHANUMERIC_SPECIAL"
-        }, 
+        },
         {
             "tag": "9F01",
             "name": "Acquirer Identifier",
@@ -372,111 +372,111 @@
             "format": "BINARY_PATTERN",
             "components":[
                 {
-                    "bitpattern": "0xxxxxxx xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=0xxxxxxx",
                     "name": "RFU"
                 },
                 {
-                    "bitpattern": "x0xxxxxx xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=x0xxxxxxx",
                     "name": "Fail cardholder verification if this CVM is unsuccessful"
                 },
                 {
-                    "bitpattern": "x1xxxxxx xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=x1xxxxxx",
                     "name": "Apply succeeding CV Rule if this CVM is unsuccessful"
                 },
                 {
-                    "bitpattern": "xx000000 xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=xx000000",
                     "name": "Fail CVM processing"
                 },
                 {
-                    "bitpattern": "xx000001 xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=xx000001",
                     "name": "Plaintext PIN verification performed by ICC"
                 },
                 {
-                    "bitpattern": "xx000010 xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=xx000010",
                     "name": "Enciphered PIN verified online"
                 },
                 {
-                    "bitpattern": "xx000011 xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=xx000011",
                     "name": "Plaintext PIN verification performed by ICC and signature (paper)"
                 },
                 {
-                    "bitpattern": "xx000100 xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=xx000100",
                     "name": "Enciphered PIN verification performed by ICC"
                 },
                 {
-                    "bitpattern": "xx000101 xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=xx000101",
                     "name": "Enciphered PIN verification performed by ICC and signature (paper)"
                 },
                 {
-                    "bitpattern": "xx011110 xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=xx011110",
                     "name": "Signature (paper)"
                 },
                 {
-                    "bitpattern": "xx011111 xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=xx011111",
                     "name": "No CVM required"
                 },
                 {
-                    "bitpattern": "xx111111 xxxxxxxx xxxxxxxx",
+                    "bitpattern": "1=xx111111",
                     "name": "This value is not available for use"
                 },
-  
+
 
                 {
-                    "bitpattern": "xxxxxxxx xxxx0000 xxxxxxxx",
+                    "bitpattern": "2=xxxx0000",
                     "name": "Always"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxx0001 xxxxxxxx",
+                    "bitpattern": "2=xxxx0001",
                     "name": "If unattended cash"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxx0010 xxxxxxxx",
+                    "bitpattern": "2=xxxx0010",
                     "name": "If not unattended cash and not manual cash and not purchase with cashback"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxx0011 xxxxxxxx",
+                    "bitpattern": "2=xxxx0011",
                     "name": "If terminal supports the CVM"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxx0100 xxxxxxxx",
+                    "bitpattern": "2=xxxx0100",
                     "name": "If manual cash"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxx0101 xxxxxxxx",
+                    "bitpattern": "2=xxxx0101",
                     "name": "If purchase with cashback"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxx0110 xxxxxxxx",
+                    "bitpattern": "2=xxxx0110",
                     "name": "If transaction is in the application currency 21 and is under X value"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxx0111 xxxxxxxx",
+                    "bitpattern": "2=xxxx0111",
                     "name": "If transaction is in the application currency and is over X value"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxx1000 xxxxxxxx",
+                    "bitpattern": "2=xxxx1000",
                     "name": "If transaction is in the application currency and is under Y value"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxx1001 xxxxxxxx",
+                    "bitpattern": "2=xxxx1001",
                     "name": "If transaction is in the application currency and is over Y value"
                 },
-  
+
 
                 {
-                    "bitpattern": "xxxxxxxx xxxxxxxx xxxxxx00",
+                    "bitpattern": "3=xxxxxx00",
                     "name": "Unknown (for example, for signature)"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxxxxxx xxxxxx01",
+                    "bitpattern": "3=xxxxxx01",
                     "name": "Failed (for example, for offline PIN)"
                 },
                 {
-                    "bitpattern": "xxxxxxxx xxxxxxxx xxxxxx10",
+                    "bitpattern": "3=xxxxxx10",
                     "name": "Successful (for example, for offline PIN)"
                 }
             ]
-        },         
+        },
         {
             "tag": "9F27",
             "name": "Cryptogram Information Data",
@@ -484,31 +484,31 @@
             "format": "BINARY_PATTERN",
             "components":[
                 {
-                    "bitpattern": "00xxxxxx",
+                    "bitpattern": "1&00xxxxxx",
                     "name": "AAC"
                 },
                 {
-                    "bitpattern": "01xxxxxx",
+                    "bitpattern": "1&01xxxxxx",
                     "name": "TC"
                 },
                 {
-                    "bitpattern": "10xxxxxx",
+                    "bitpattern": "1&10xxxxxx",
                     "name": "ARQC"
                 },
                 {
-                    "bitpattern": "11xxxxxx",
+                    "bitpattern": "1&11xxxxxx",
                     "name": "RFU"
                 },
                 {
-                    "bitpattern": "xx00xxxx",
+                    "bitpattern": "1&xx00xxxx",
                     "name": "Payment System-specific data"
                 },
                 {
-                    "bitpattern": "xxxx0xxx",
+                    "bitpattern": "1&xxxx0xxx",
                     "name": "No advice required"
                 },
                 {
-                    "bitpattern": "xxxxx000",
+                    "bitpattern": "1&xxxxx000",
                     "name": "No information given"
                 }
             ]
@@ -518,7 +518,7 @@
             "name": "Data Authentication Code",
             "description": "An issuer assigned value that is retained by the terminal during the verification process of the Signed Static Application Data",
             "format": "VARIABLE"
-        },    
+        },
         {
             "tag": "84",
             "name": "Dedicated File Name (DF)",
@@ -530,7 +530,7 @@
             "name": "Interface Device (IFD) Serial Number",
             "description": "Unique and permanent serial number assigned to the IFD by the manufacturer",
             "format": "ALPHANUMERIC"
-        },       
+        },
         {
             "tag": "5F53",
             "name": "International Bank Account Number (IBAN)",
@@ -548,7 +548,7 @@
             "name": "Issuer Authentication Data",
             "description": "Data sent to the ICC for online issuer authentication",
             "format": "VARIABLE"
-        },    
+        },
         {
             "tag": "9F11",
             "name": "Issuer Code Table Index",
@@ -560,7 +560,7 @@
             "name": "Issuer Script Command",
             "description": "Contains a command for transmission to the ICC",
             "format": "VARIABLE"
-        },   
+        },
         {
             "tag": "9F18",
             "name": "Issuer Script Identifier",
@@ -571,7 +571,7 @@
             "tag": "71",
             "name": "Issuer Script Template 1",
             "description": "Contains proprietary issuer data for transmission to the ICC before the second GENERATE AC command"
-        },    
+        },
         {
             "tag": "71",
             "name": "Issuer Script Template 2",
@@ -582,7 +582,7 @@
             "name": "Language Preference",
             "description": "1-4 languages stored in order of preference, each represented by 2 alphabetical characters according to ISO 639",
             "format": "ALPHANUMERIC"
-        },   
+        },
         {
             "tag": "9F13",
             "name": "Last Online Application Transaction Counter (ATC) Register",
@@ -594,7 +594,7 @@
             "name": "Merchant Category Code",
             "description": "Classifies the type of business being done by the merchant, represented according to ISO 8583:1993 for Card Acceptor Business Code",
             "format": "NUMERIC"
-        },    
+        },
         {
             "tag": "9F16",
             "name": "Merchant Identifier",
@@ -606,13 +606,13 @@
             "name": "Merchant Name and Location",
             "description": "Indicates the name and location of the merchant",
             "format": "ALPHANUMERIC_SPECIAL"
-        },   
+        },
         {
             "tag": "5F30",
             "name": "Service Code",
             "description": "Service code as defined in ISO/IEC 7813 for track 1 and track 2",
             "format": "NUMERIC"
-        },    
+        },
         {
             "tag": "9F33",
             "name": "Terminal Capabilities",
@@ -695,13 +695,13 @@
             "description": "Indicates the country of the terminal, represented according to ISO 3166",
             "format": "NUMERIC",
             "reference": "ISO_3166"
-        },                                                                     
+        },
         {
             "tag": "9F1C",
             "name": "Terminal Identification",
             "description": "Designates the unique location of a terminal at a merchant",
             "format": "ALPHANUMERIC_SPECIAL"
-        },  
+        },
         {
             "tag": "9F35",
             "name": "Terminal Type",
@@ -719,7 +719,7 @@
                 {
                     "pattern": "23",
                     "name": "Offline only (attended)"
-                }            
+                }
             ]
         },
         {
@@ -861,7 +861,7 @@
                     "name": "RFU"
                 }
             ]
-        },  
+        },
         {
             "tag": "57",
             "name": "Track 2 Equivalent Data",
@@ -874,7 +874,7 @@
             "description": "Indicates the currency code of the transaction according to ISO 4217",
             "format": "NUMERIC",
             "reference": "ISO_4217"
-        },    
+        },
         {
             "tag": "5F36",
             "name": "Transaction Currency Exponent",
@@ -886,7 +886,7 @@
             "name": "Transaction Date",
             "description": "Local date that the transaction was authorised",
             "format": "YYMMDD"
-        },  
+        },
         {
             "tag": "9F41",
             "name": "Transaction Sequence Counter",
@@ -928,7 +928,7 @@
                     "name": "RFU"
                 }
             ]
-        },    
+        },
         {
             "tag": "9F21",
             "name": "Transaction Time",
