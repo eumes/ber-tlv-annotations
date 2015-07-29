@@ -1,5 +1,5 @@
 var ber_tlv_1 = require('ber-tlv');
-var ByteMatcher_1 = require('../helper/ByteMatcher');
+var BitMatcher_1 = require('../helper/BitMatcher');
 var AnnotatedTlv_1 = require('../annotation/AnnotatedTlv');
 var AnnotationHelper_1 = require('../helper/AnnotationHelper');
 var ResourceBasedAnnotationProvider = (function () {
@@ -79,7 +79,7 @@ var ResourceBasedAnnotationProvider = (function () {
             var value = null;
             if (resourceComponent.bitmatch != null) {
                 selector = resourceComponent.bitmatch;
-                triggered = ByteMatcher_1.ByteMatcher.matchesBitmatch(mappedValue, resourceComponent.bitmatch);
+                triggered = BitMatcher_1.BitMatcher.matches(mappedValue, resourceComponent.bitmatch);
             }
             var valueComponent = new AnnotatedTlv_1.DefaultAnnotatedTlvComponent(name, selector, triggered, value);
             valueComponents.push(valueComponent);

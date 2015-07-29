@@ -1,7 +1,7 @@
 import { OctetBuffer } from 'octet-buffer';
 import { ITlv, TlvType, TlvClass } from 'ber-tlv';
 
-import { ByteMatcher } from '../helper/ByteMatcher';
+import { BitMatcher } from '../helper/BitMatcher';
 import { IAnnotatedTlv, IAnnotatedTlvComponent, DefaultAnnotatedTlv, DefaultAnnotatedTlvComponent } from '../annotation/AnnotatedTlv';
 import { AnnotationValueFormat, AnnotationValueReference, AnnotationValueFormatHelper, AnnotationValueReferenceHelper } from '../helper/AnnotationHelper';
 import { IAnnotationProvider } from './AnnotationProvider';
@@ -119,7 +119,7 @@ export class ResourceBasedAnnotationProvider implements IAnnotationProvider {
 
             if (resourceComponent.bitmatch != null){
                 selector = resourceComponent.bitmatch;
-                triggered = ByteMatcher.matchesBitmatch(mappedValue, resourceComponent.bitmatch);
+                triggered = BitMatcher.matches(mappedValue, resourceComponent.bitmatch);
             }
 
             var valueComponent: IAnnotatedTlvComponent = new DefaultAnnotatedTlvComponent(name, selector, triggered, value);
