@@ -64,6 +64,7 @@ var AnnotationValueFormatHelper = (function () {
             }
             case AnnotationValueFormat.VARIABLE_BYTES: {
                 stringValue = ByteHelper_1.ByteHelper.getHex(value);
+                break;
             }
             case AnnotationValueFormat.VARIABLE_BITS: {
                 stringValue = ByteHelper_1.ByteHelper.getBits(value);
