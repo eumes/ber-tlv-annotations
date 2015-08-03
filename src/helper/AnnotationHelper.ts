@@ -14,7 +14,7 @@ export enum AnnotationValueFormat {
     NUMERIC,	          // Number, right justified BCD, padded left with 0
 
     VARIABLE_BITS,        // Proprietary, displayed bitwise)
-    VARIABLE_BYTES,       // Proprietary, displayed bytewise hex)
+    VARIABLE_BYTES,       // Proprietary, displayed bytewise)
 
     YYMMDD,               // Date format
     HHMMSS,               // Time format
@@ -72,6 +72,7 @@ export class AnnotationValueFormatHelper {
             }
             case AnnotationValueFormat.VARIABLE_BYTES: {
                 stringValue = ByteHelper.getHex(value);
+                break;
             }
             case AnnotationValueFormat.VARIABLE_BITS: {
                 stringValue = ByteHelper.getBits(value);
