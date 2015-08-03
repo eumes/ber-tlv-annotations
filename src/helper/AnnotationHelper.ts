@@ -14,7 +14,7 @@ export enum AnnotationValueFormat {
     NUMERIC,	          // Number, right justified BCD, padded left with 0
 
     VARIABLE_BITS,        // Proprietary, displayed bitwise)
-    VARIABLE_BYTES,       // Proprietary, displayed bytewise hex)
+    VARIABLE_BYTES,       // Proprietary, displayed bytewise)
 
     YYMMDD,               // Date format
     HHMMSS,               // Time format
