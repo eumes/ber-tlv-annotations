@@ -72,6 +72,7 @@ export class AnnotationValueFormatHelper {
             }
             case AnnotationValueFormat.VARIABLE_BYTES: {
                 stringValue = ByteHelper.getHex(value);
+                break;
             }
             case AnnotationValueFormat.VARIABLE_BITS: {
                 stringValue = ByteHelper.getBits(value);

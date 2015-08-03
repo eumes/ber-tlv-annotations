@@ -221,7 +221,7 @@
                 {
                     "bitmatch": "1&7",
                     "name": "Card capture"
-                }
+                },
                 {
                     "bitmatch": "1&5",
                     "name": "CDA"

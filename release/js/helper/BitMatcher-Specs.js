@@ -105,8 +105,8 @@ describe('BitMatcher', function () {
             });
             describe('using format _&_ (bitnumber)', function () {
                 it('accepts matching 1st byte', function () {
-                    reference = "41";
-                    bitmatch = "1&1";
+                    reference = "80";
+                    bitmatch = "1&8";
                     expectingMatch = true;
                     receivedMatch = BitMatcher_1.BitMatcher.matches(reference, bitmatch);
                     chai_1.expect(receivedMatch).to.equal(expectingMatch);
