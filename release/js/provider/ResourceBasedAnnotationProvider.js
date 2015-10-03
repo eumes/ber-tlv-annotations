@@ -28,8 +28,7 @@ var ResourceBasedAnnotationProvider = (function () {
         var name = resourceItem.name;
         var description = resourceItem.description;
         var reference = this.reference;
-        var rawValue = item.value.toString('hex').toUpperCase();
-        var annotationItem = new AnnotatedTlv_1.DefaultAnnotatedTlv(tag, type, rawValue, null, name, description, reference);
+        var annotationItem = new AnnotatedTlv_1.DefaultAnnotatedTlv(tag, type, null, null, name, description, reference);
         return annotationItem;
     };
     ResourceBasedAnnotationProvider.prototype.buildAnnotationPrimitive = function (item, resourceItem) {
