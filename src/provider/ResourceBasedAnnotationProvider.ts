@@ -58,9 +58,8 @@ export class ResourceBasedAnnotationProvider implements IAnnotationProvider {
         var name: string = resourceItem.name;
         var description: string = resourceItem.description;
         var reference: string = this.reference;
-        var rawValue: string = item.value.toString('hex').toUpperCase();
 
-        var annotationItem: IAnnotatedTlv = new DefaultAnnotatedTlv(tag, type, rawValue, null, name, description, reference);
+        var annotationItem: IAnnotatedTlv = new DefaultAnnotatedTlv(tag, type, null, null, name, description, reference);
         return annotationItem;
     }
 
