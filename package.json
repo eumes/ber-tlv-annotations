@@ -32,7 +32,7 @@
     "dependencies": {
       "country-data": "0.0.19",
       "i18n-iso-countries": "^0.8.0",
-      "ber-tlv": "^0.0.1",
+      "ber-tlv": "^0.9.1",
       "octet-buffer": "^0.0.1"
     }
 }
