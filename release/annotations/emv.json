@@ -453,7 +453,7 @@
             "tag": "9F27",
             "name": "Cryptogram Information Data",
             "description": "Indicates the type of cryptogram and the actions to be performed by the terminal",
-            "format": "VARIABLE_BYTES",
+            "format": "VARIABLE_BITS",
             "components":[
                 {
                     "bitmatch": "1=00xxxxxx",
