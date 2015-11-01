@@ -1,6 +1,6 @@
 {
     "name": "ber-tlv-annotations",
-    "version": "0.9.4",
+    "version": "0.9.5",
     "description": "Annotation provider for TLV data parsed with the ber-tlv module",
     "author": "Simon Eumes <simon@sim0n.net>",
     "license": "MIT",
