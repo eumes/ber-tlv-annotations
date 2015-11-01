@@ -101,7 +101,7 @@
                     "name": "Display, cardholder"
                 },
                 {
-                    "bitmask": "4&03",
+                    "bitmask": "4&3",
                     "name": "Code tables"
                 },
 
@@ -456,27 +456,27 @@
             "format": "VARIABLE_BYTES",
             "components":[
                 {
-                    "bitmatch": "1&00xxxxxx",
+                    "bitmatch": "1=00xxxxxx",
                     "name": "AAC"
                 },
                 {
-                    "bitmatch": "1&01xxxxxx",
+                    "bitmatch": "1=01xxxxxx",
                     "name": "TC"
                 },
                 {
-                    "bitmatch": "1&10xxxxxx",
+                    "bitmatch": "1=10xxxxxx",
                     "name": "ARQC"
                 },
                 {
-                    "bitmatch": "1&xx00xxxx",
+                    "bitmatch": "1=xx00xxxx",
                     "name": "Payment System-specific data"
                 },
                 {
-                    "bitmatch": "1&xxxx0xxx",
+                    "bitmatch": "1=xxxx0xxx",
                     "name": "No advice required"
                 },
                 {
-                    "bitmatch": "1&xxxxx000",
+                    "bitmatch": "1=xxxxx000",
                     "name": "No information given"
                 }
             ]
@@ -751,7 +751,7 @@
                     "name": "PIN entry required, PIN pad present, but PIN was not entered"
                 },
                 {
-                    "bitmatch": "3&",
+                    "bitmatch": "3&3",
                     "name": "Online PIN entered"
                 },
 
